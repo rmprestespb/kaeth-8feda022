@@ -1,29 +1,19 @@
 import { Zap, Shield, Headphones } from "lucide-react";
-
-const differentials = [
-  {
-    icon: Zap,
-    title: "Design Exclusivo",
-    description:
-      "Cada projeto é único. Não usamos templates prontos. Criamos do zero para refletir a personalidade da sua marca.",
-  },
-  {
-    icon: Shield,
-    title: "Entrega Rápida",
-    description:
-      "Processos otimizados para entregar projetos de alta qualidade no menor tempo possível. Agilidade sem perder qualidade.",
-  },
-  {
-    icon: Headphones,
-    title: "Suporte Dedicado",
-    description:
-      "Atendimento personalizado do início ao fim. Estamos sempre disponíveis para ajustar e aperfeiçoar seu projeto.",
-  },
-];
-
+const differentials = [{
+  icon: Zap,
+  title: "Design Exclusivo",
+  description: "Cada projeto é único. Não usamos templates prontos. Criamos do zero para refletir a personalidade da sua marca."
+}, {
+  icon: Shield,
+  title: "Entrega Rápida",
+  description: "Processos otimizados para entregar projetos de alta qualidade no menor tempo possível. Agilidade sem perder qualidade."
+}, {
+  icon: Headphones,
+  title: "Suporte Dedicado",
+  description: "Atendimento personalizado do início ao fim. Estamos sempre disponíveis para ajustar e aperfeiçoar seu projeto."
+}];
 const WhyUs = () => {
-  return (
-    <section id="processo" className="py-24 md:py-32 relative">
+  return <section id="processo" className="py-24 md:py-32 relative">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent" />
 
@@ -32,7 +22,7 @@ const WhyUs = () => {
           {/* Left Content */}
           <div>
             <span className="text-primary font-medium text-sm uppercase tracking-wider">
-              Por que escolher a Nexus?
+              Por que escolher a KAETH?
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 mb-6">
               Parceiros no seu{" "}
@@ -57,12 +47,9 @@ const WhyUs = () => {
 
           {/* Right - Cards */}
           <div className="space-y-6">
-            {differentials.map((item, index) => (
-              <div
-                key={item.title}
-                className="group glass-card rounded-2xl p-6 hover:border-primary/30 transition-all duration-300"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+            {differentials.map((item, index) => <div key={item.title} className="group glass-card rounded-2xl p-6 hover:border-primary/30 transition-all duration-300" style={{
+            animationDelay: `${index * 0.1}s`
+          }}>
                 <div className="flex items-start gap-5">
                   {/* Icon */}
                   <div className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -77,13 +64,10 @@ const WhyUs = () => {
                     </p>
                   </div>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default WhyUs;
