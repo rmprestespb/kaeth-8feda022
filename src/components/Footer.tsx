@@ -14,7 +14,7 @@ const Footer = () => {
     name: "Contato",
     href: "#contato"
   }];
-  const services = ["Criação de Logos", "Desenvolvimento Web", "Identidade Visual", "UI/UX Design"];
+  const services = ["Criação de Logos", "Desenvolvimento Web", "Identidade Visual", "POWER BI"];
   const socialLinks = [{
     icon: Instagram,
     href: "#",
