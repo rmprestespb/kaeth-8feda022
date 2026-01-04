@@ -1,35 +1,60 @@
 import { ExternalLink } from "lucide-react";
 
+import friendsPoker from "@/assets/portfolio/friends-poker.png";
+import avantCarwash from "@/assets/portfolio/avant-carwash.png";
+import mecanicaTotal from "@/assets/portfolio/mecanica-total.png";
+import transviaLogistics from "@/assets/portfolio/transvia-logistics.png";
+import slBeauty from "@/assets/portfolio/sl-beauty.png";
+import republicaJogos from "@/assets/portfolio/republica-jogos.png";
+import vetnova from "@/assets/portfolio/vetnova.png";
+import aurora from "@/assets/portfolio/aurora.png";
+import velocycle from "@/assets/portfolio/velocycle.png";
+
 const projects = [
   {
-    title: "TechFlow App",
-    category: "Website & Branding",
-    image: "https://placehold.co/600x400/1a1a2e/a855f7?text=TechFlow",
+    title: "Friends Poker Club",
+    category: "Logo & Branding",
+    image: friendsPoker,
   },
   {
-    title: "Bloom Beauty",
-    category: "Logo & Identidade",
-    image: "https://placehold.co/600x400/1a1a2e/06b6d4?text=Bloom",
+    title: "Avant Future Carwash",
+    category: "Logo & Identidade Visual",
+    image: avantCarwash,
   },
   {
-    title: "Urban Eats",
-    category: "Website Responsivo",
-    image: "https://placehold.co/600x400/1a1a2e/a855f7?text=Urban",
+    title: "Mecânica Total 3D Power",
+    category: "Logo & Branding",
+    image: mecanicaTotal,
   },
   {
-    title: "Mindset Studio",
-    category: "Branding Completo",
-    image: "https://placehold.co/600x400/1a1a2e/06b6d4?text=Mindset",
+    title: "Transvia Logistics",
+    category: "Identidade Corporativa",
+    image: transviaLogistics,
   },
   {
-    title: "Nova Finance",
-    category: "Website & UI/UX",
-    image: "https://placehold.co/600x400/1a1a2e/a855f7?text=Nova",
+    title: "SL Beauty",
+    category: "Logo & Design Elegante",
+    image: slBeauty,
   },
   {
-    title: "Pulse Fitness",
-    category: "Logo & Social Media",
-    image: "https://placehold.co/600x400/1a1a2e/06b6d4?text=Pulse",
+    title: "República dos Jogos",
+    category: "Logo & Brasão",
+    image: republicaJogos,
+  },
+  {
+    title: "VetNova Clínica Veterinária",
+    category: "Logo & Branding",
+    image: vetnova,
+  },
+  {
+    title: "Aurora Centro Termal",
+    category: "Logo & Identidade Visual",
+    image: aurora,
+  },
+  {
+    title: "Velocycle Hub",
+    category: "Logo & Branding Esportivo",
+    image: velocycle,
   },
 ];
 
@@ -60,7 +85,7 @@ const Portfolio = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Image */}
-              <div className="aspect-[3/2] overflow-hidden">
+              <div className="aspect-[3/2] overflow-hidden bg-card">
                 <img
                   src={project.image}
                   alt={project.title}
