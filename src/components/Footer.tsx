@@ -95,19 +95,19 @@ const Footer = () => {
               <li className="flex items-center gap-3 text-sm">
                 <Mail className="w-4 h-4 text-primary flex-shrink-0" />
                 <a href="mailto:contato@nexusstudio.com" className="text-muted-foreground hover:text-foreground transition-colors">
-                  contato@nexusstudio.com
+                  robsonprestes@kaeth.com
                 </a>
               </li>
               <li className="flex items-center gap-3 text-sm">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <a href="tel:+5511999999999" className="text-muted-foreground hover:text-foreground transition-colors">
-                  (11) 99999-9999
+                  (46) 99935 - 0070
                 </a>
               </li>
               <li className="flex items-start gap-3 text-sm">
                 <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground">
-                  São Paulo, SP - Brasil
+                  Pato Branco, PR- Brasil
                 </span>
               </li>
             </ul>
