@@ -1,4 +1,5 @@
 import { ArrowRight, Sparkles } from "lucide-react";
+import heroVideo from "@/assets/hero-video.mp4";
 
 const Hero = () => {
   return (
@@ -23,9 +24,21 @@ const Hero = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full mb-8 animate-fade-up">
+          <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full mb-6 animate-fade-up">
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-sm text-muted-foreground">Agência Digital Premium</span>
+          </div>
+
+          {/* Hero Video */}
+          <div className="mb-8 animate-fade-up flex justify-center">
+            <video
+              src={heroVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full max-w-2xl rounded-2xl shadow-2xl shadow-primary/20"
+            />
           </div>
 
           {/* Main Headline */}
