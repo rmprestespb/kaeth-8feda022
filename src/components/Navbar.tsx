@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="text-2xl font-bold gradient-text">
-          KA<span className="text-foreground">Studio</span>
+          KA<span className="text-foreground">​ETH</span>
         </a>
 
         {/* Desktop Nav */}
