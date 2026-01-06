@@ -132,7 +132,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <p>© {currentYear} NexusStudio. Todos os direitos reservados.</p>
+          <p>© {currentYear} KaethStudio. Todos os direitos reservados.</p>
           <p>
             Desenvolvido com{" "}
             <span className="gradient-text">♥</span> no Brasil
