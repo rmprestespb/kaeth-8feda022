@@ -9,8 +9,62 @@ import republicaJogos from "@/assets/portfolio/republica-jogos.png";
 import vetnova from "@/assets/portfolio/vetnova.png";
 import aurora from "@/assets/portfolio/aurora.png";
 import velocycle from "@/assets/portfolio/velocycle.png";
+import dashboardSales from "@/assets/portfolio/dashboard-sales.png";
+import dashboardAnalytics from "@/assets/portfolio/dashboard-analytics.png";
+import dashboardSocial from "@/assets/portfolio/dashboard-social.png";
+import dashboardMedical from "@/assets/portfolio/dashboard-medical.png";
+import dashboardAgency from "@/assets/portfolio/dashboard-agency.png";
+import dashboardLogistics from "@/assets/portfolio/dashboard-logistics.png";
+import dashboardSmartHome from "@/assets/portfolio/dashboard-smart-home.png";
+import dashboardLuxury from "@/assets/portfolio/dashboard-luxury.png";
+import dashboardGaming from "@/assets/portfolio/dashboard-gaming.png";
 
 const projects = [
+  {
+    title: "Dashboard Sales Performance",
+    category: "Dashboard & BI",
+    image: dashboardSales,
+  },
+  {
+    title: "Dashboard Analytics",
+    category: "Dashboard & BI",
+    image: dashboardAnalytics,
+  },
+  {
+    title: "Social Media Analytics",
+    category: "Dashboard & Redes Sociais",
+    image: dashboardSocial,
+  },
+  {
+    title: "Dashboard Hospitalar",
+    category: "Dashboard & Saúde",
+    image: dashboardMedical,
+  },
+  {
+    title: "Dashboard Agência Criativa",
+    category: "Dashboard & Gestão",
+    image: dashboardAgency,
+  },
+  {
+    title: "Dashboard Logística",
+    category: "Dashboard & Transporte",
+    image: dashboardLogistics,
+  },
+  {
+    title: "Dashboard Smart Home",
+    category: "Dashboard & IoT",
+    image: dashboardSmartHome,
+  },
+  {
+    title: "Dashboard Vendas Premium",
+    category: "Dashboard & Marketing",
+    image: dashboardLuxury,
+  },
+  {
+    title: "Dashboard Gaming",
+    category: "Dashboard & Entretenimento",
+    image: dashboardGaming,
+  },
   {
     title: "Friends Poker Club",
     category: "Logo & Branding",
