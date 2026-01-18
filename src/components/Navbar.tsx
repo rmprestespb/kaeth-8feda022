@@ -17,10 +17,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Quem Somos", href: "/quem-somos", isRoute: true },
     { name: "Serviços", href: "#servicos", isRoute: false },
     { name: "Portfólio", href: "#portfolio", isRoute: false },
     { name: "Processo", href: "#processo", isRoute: false },
+    { name: "Quem Somos", href: "/quem-somos", isRoute: true },
     { name: "Contato", href: "#contato", isRoute: false },
   ];
   return <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass-card py-4" : "bg-transparent py-6"}`}>
