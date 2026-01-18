@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import { useState } from "react";
 
 import friendsPoker from "@/assets/portfolio/friends-poker.png";
 import avantCarwash from "@/assets/portfolio/avant-carwash.png";
@@ -19,7 +20,7 @@ import dashboardSmartHome from "@/assets/portfolio/dashboard-smart-home.png";
 import dashboardLuxury from "@/assets/portfolio/dashboard-luxury.png";
 import dashboardGaming from "@/assets/portfolio/dashboard-gaming.png";
 
-const projects = [
+const dashboards = [
   {
     title: "Dashboard Sales Performance",
     category: "Dashboard & BI",
@@ -65,6 +66,9 @@ const projects = [
     category: "Dashboard & Entretenimento",
     image: dashboardGaming,
   },
+];
+
+const creativos = [
   {
     title: "Friends Poker Club",
     category: "Logo & Branding",
@@ -112,12 +116,18 @@ const projects = [
   },
 ];
 
+type TabType = "dashboards" | "criativos";
+
 const Portfolio = () => {
+  const [activeTab, setActiveTab] = useState<TabType>("dashboards");
+
+  const currentProjects = activeTab === "dashboards" ? dashboards : creativos;
+
   return (
     <section id="portfolio" className="py-24 md:py-32">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-primary font-medium text-sm uppercase tracking-wider">
             Portfólio
           </span>
@@ -130,9 +140,35 @@ const Portfolio = () => {
           </p>
         </div>
 
+        {/* Tabs */}
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex bg-card/50 backdrop-blur-sm rounded-full p-1.5 border border-border/50">
+            <button
+              onClick={() => setActiveTab("dashboards")}
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeTab === "dashboards"
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Dashboards & BI
+            </button>
+            <button
+              onClick={() => setActiveTab("criativos")}
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeTab === "criativos"
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Logos & Criativos
+            </button>
+          </div>
+        </div>
+
         {/* Portfolio Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
+          {currentProjects.map((project, index) => (
             <div
               key={project.title}
               className="group relative overflow-hidden rounded-2xl cursor-pointer"
