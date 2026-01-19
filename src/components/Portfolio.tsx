@@ -30,17 +30,17 @@ import gramapremiumFooter from "@/assets/portfolio/gramapremium-footer.png";
 
 const dashboards = [
   {
-    title: "Dashboard Sales Performance",
+    title: "Dashboard de Vendas",
     category: "Dashboard & BI",
     image: dashboardSales,
   },
   {
-    title: "Dashboard Analytics",
+    title: "Dashboard de Análise",
     category: "Dashboard & BI",
     image: dashboardAnalytics,
   },
   {
-    title: "Social Media Analytics",
+    title: "Análise de Redes Sociais",
     category: "Dashboard & Redes Sociais",
     image: dashboardSocial,
   },
@@ -60,7 +60,7 @@ const dashboards = [
     image: dashboardLogistics,
   },
   {
-    title: "Dashboard Smart Home",
+    title: "Dashboard Casa Inteligente",
     category: "Dashboard & IoT",
     image: dashboardSmartHome,
   },
@@ -70,7 +70,7 @@ const dashboards = [
     image: dashboardLuxury,
   },
   {
-    title: "Dashboard Gaming",
+    title: "Dashboard de Jogos",
     category: "Dashboard & Entretenimento",
     image: dashboardGaming,
   },
@@ -79,7 +79,7 @@ const dashboards = [
 const logos = [
   {
     title: "Friends Poker Club",
-    category: "Logo & Branding",
+    category: "Logo & Marca",
     image: friendsPoker,
   },
   {
@@ -89,7 +89,7 @@ const logos = [
   },
   {
     title: "Mecânica Total 3D Power",
-    category: "Logo & Branding",
+    category: "Logo & Marca",
     image: mecanicaTotal,
   },
   {
@@ -109,7 +109,7 @@ const logos = [
   },
   {
     title: "VetNova Clínica Veterinária",
-    category: "Logo & Branding",
+    category: "Logo & Marca",
     image: vetnova,
   },
   {
@@ -119,7 +119,7 @@ const logos = [
   },
   {
     title: "Velocycle Hub",
-    category: "Logo & Branding Esportivo",
+    category: "Logo & Marca Esportiva",
     image: velocycle,
   },
 ];
@@ -127,16 +127,16 @@ const logos = [
 const criativos = [
   {
     title: "Racing Brands TR",
-    category: "Criativo & Motion",
+    category: "Criativo & Animação",
     image: criativoCarrossel,
   },
   {
-    title: "Rode Certo App Interface",
-    category: "Criativo & UI Design",
+    title: "Rode Certo - Interface",
+    category: "Criativo & Design de Interface",
     image: criativoInterface,
   },
   {
-    title: "Rode Certo Login Seguro",
+    title: "Rode Certo - Login Seguro",
     category: "Criativo & Marketing",
     image: criativoLogin,
   },
