@@ -20,6 +20,9 @@ import dashboardLogistics from "@/assets/portfolio/dashboard-logistics.png";
 import dashboardSmartHome from "@/assets/portfolio/dashboard-smart-home.png";
 import dashboardLuxury from "@/assets/portfolio/dashboard-luxury.png";
 import dashboardGaming from "@/assets/portfolio/dashboard-gaming.png";
+import criativoCarrossel from "@/assets/portfolio/criativo-carrossel.png";
+import criativoInterface from "@/assets/portfolio/criativo-interface.png";
+import criativoLogin from "@/assets/portfolio/criativo-login.png";
 
 const dashboards = [
   {
@@ -69,7 +72,7 @@ const dashboards = [
   },
 ];
 
-const creativos = [
+const logos = [
   {
     title: "Friends Poker Club",
     category: "Logo & Branding",
@@ -117,7 +120,27 @@ const creativos = [
   },
 ];
 
-type TabType = "dashboards" | "criativos";
+const criativos = [
+  {
+    title: "Racing Brands TR",
+    category: "Criativo & Motion",
+    image: criativoCarrossel,
+  },
+  {
+    title: "Rode Certo App Interface",
+    category: "Criativo & UI Design",
+    image: criativoInterface,
+  },
+  {
+    title: "Rode Certo Login Seguro",
+    category: "Criativo & Marketing",
+    image: criativoLogin,
+  },
+];
+
+const sites: { title: string; category: string; image: string }[] = [];
+
+type TabType = "dashboards" | "logos" | "criativos" | "sites";
 
 interface Project {
   title: string;
@@ -129,7 +152,22 @@ const Portfolio = () => {
   const [activeTab, setActiveTab] = useState<TabType>("dashboards");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const currentProjects = activeTab === "dashboards" ? dashboards : creativos;
+  const getProjects = () => {
+    switch (activeTab) {
+      case "dashboards":
+        return dashboards;
+      case "logos":
+        return logos;
+      case "criativos":
+        return criativos;
+      case "sites":
+        return sites;
+      default:
+        return dashboards;
+    }
+  };
+
+  const currentProjects = getProjects();
 
   return (
     <section id="portfolio" className="py-24 md:py-32">
@@ -150,26 +188,46 @@ const Portfolio = () => {
 
         {/* Tabs */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-card/50 backdrop-blur-sm rounded-full p-1.5 border border-border/50">
+          <div className="inline-flex flex-wrap justify-center gap-2 bg-card/50 backdrop-blur-sm rounded-full p-1.5 border border-border/50">
             <button
               onClick={() => setActiveTab("dashboards")}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === "dashboards"
                   ? "bg-primary text-primary-foreground shadow-lg"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              Dashboards & BI
+              Dashboards
+            </button>
+            <button
+              onClick={() => setActiveTab("logos")}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeTab === "logos"
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Logos
             </button>
             <button
               onClick={() => setActiveTab("criativos")}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === "criativos"
                   ? "bg-primary text-primary-foreground shadow-lg"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              Logos & Criativos
+              Criativos
+            </button>
+            <button
+              onClick={() => setActiveTab("sites")}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                activeTab === "sites"
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              Sites
             </button>
           </div>
         </div>
@@ -184,38 +242,46 @@ const Portfolio = () => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {currentProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className="group relative overflow-hidden rounded-2xl cursor-pointer"
-                onClick={() => setSelectedProject(project)}
-              >
-                {/* Image */}
-                <div className="aspect-[3/2] overflow-hidden bg-card">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
+            {currentProjects.length === 0 ? (
+              <div className="col-span-full text-center py-16">
+                <p className="text-muted-foreground text-lg">
+                  Em breve novos projetos serão adicionados.
+                </p>
+              </div>
+            ) : (
+              currentProjects.map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className="group relative overflow-hidden rounded-2xl cursor-pointer"
+                  onClick={() => setSelectedProject(project)}
+                >
+                  {/* Image */}
+                  <div className="aspect-[3/2] overflow-hidden bg-card">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
-                  <span className="text-primary text-sm font-medium">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-foreground mt-1">
-                    {project.title}
-                  </h3>
-                </div>
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
+                    <span className="text-primary text-sm font-medium">
+                      {project.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-foreground mt-1">
+                      {project.title}
+                    </h3>
+                  </div>
 
-                {/* Border Glow on Hover */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary/50 transition-all duration-300" />
-              </motion.div>
-            ))}
+                  {/* Border Glow on Hover */}
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary/50 transition-all duration-300" />
+                </motion.div>
+              ))
+            )}
           </motion.div>
         </AnimatePresence>
       </div>
