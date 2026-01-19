@@ -144,13 +144,13 @@ const criativos = [
 
 const sites = [
   {
-    title: "GramaPremium - Hero",
-    category: "Site & Landing Page",
+    title: "GramaPremium - Capa Principal",
+    category: "Site & Página de Vendas",
     image: gramapremiumHero,
   },
   {
     title: "GramaPremium - Produtos",
-    category: "Site & E-commerce",
+    category: "Site & Loja Virtual",
     image: gramapremiumProdutos,
   },
   {
@@ -159,7 +159,7 @@ const sites = [
     image: gramapremiumGaleria,
   },
   {
-    title: "GramaPremium - Footer",
+    title: "GramaPremium - Rodapé",
     category: "Site & Contato",
     image: gramapremiumFooter,
   },
