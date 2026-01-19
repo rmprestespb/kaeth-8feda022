@@ -1,5 +1,6 @@
-import { ExternalLink } from "lucide-react";
+import { X } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import friendsPoker from "@/assets/portfolio/friends-poker.png";
 import avantCarwash from "@/assets/portfolio/avant-carwash.png";
@@ -118,8 +119,15 @@ const creativos = [
 
 type TabType = "dashboards" | "criativos";
 
+interface Project {
+  title: string;
+  category: string;
+  image: string;
+}
+
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState<TabType>("dashboards");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const currentProjects = activeTab === "dashboards" ? dashboards : creativos;
 
@@ -166,51 +174,98 @@ const Portfolio = () => {
           </div>
         </div>
 
-        {/* Portfolio Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {currentProjects.map((project, index) => (
-            <div
-              key={project.title}
-              className="group relative overflow-hidden rounded-2xl cursor-pointer"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Image */}
-              <div className="aspect-[3/2] overflow-hidden bg-card">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
+        {/* Portfolio Grid with Animation */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {currentProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="group relative overflow-hidden rounded-2xl cursor-pointer"
+                onClick={() => setSelectedProject(project)}
+              >
+                {/* Image */}
+                <div className="aspect-[3/2] overflow-hidden bg-card">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
+                  <span className="text-primary text-sm font-medium">
+                    {project.category}
+                  </span>
+                  <h3 className="text-xl font-bold text-foreground mt-1">
+                    {project.title}
+                  </h3>
+                </div>
+
+                {/* Border Glow on Hover */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary/50 transition-all duration-300" />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Modal for viewing project */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative max-w-5xl w-full max-h-[90vh] overflow-hidden rounded-2xl bg-card border border-border shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Image */}
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                className="w-full h-auto max-h-[80vh] object-contain"
+              />
+
+              {/* Info */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background via-background/90 to-transparent">
                 <span className="text-primary text-sm font-medium">
-                  {project.category}
+                  {selectedProject.category}
                 </span>
-                <h3 className="text-xl font-bold text-foreground mt-1 flex items-center gap-2">
-                  {project.title}
-                  <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <h3 className="text-2xl font-bold text-foreground mt-1">
+                  {selectedProject.title}
                 </h3>
               </div>
-
-              {/* Border Glow on Hover */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary/50 transition-all duration-300" />
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <a
-            href="#contato"
-            className="inline-flex items-center gap-2 text-primary font-medium hover:gap-4 transition-all duration-300"
-          >
-            Ver todos os projetos
-            <ExternalLink className="w-4 h-4" />
-          </a>
-        </div>
-      </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
