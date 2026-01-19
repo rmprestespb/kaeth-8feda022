@@ -58,7 +58,7 @@ const Footer = () => {
           <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
             Entre em contato e vamos conversar sobre como podemos ajudar seu negócio a crescer.
           </p>
-          <a href="mailto:contato@nexusstudio.com" className="inline-flex items-center gap-2 gradient-bg px-8 py-4 rounded-full font-semibold text-primary-foreground hover:opacity-90 transition-all duration-300 hover:scale-105 glow">
+          <a href="mailto:rmprestespb@gmail.com" className="inline-flex items-center gap-2 gradient-bg px-8 py-4 rounded-full font-semibold text-primary-foreground hover:opacity-90 transition-all duration-300 hover:scale-105 glow">
             <Mail className="w-5 h-5" />
             Solicitar Orçamento
           </a>
