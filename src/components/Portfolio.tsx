@@ -23,6 +23,10 @@ import dashboardGaming from "@/assets/portfolio/dashboard-gaming.png";
 import criativoCarrossel from "@/assets/portfolio/criativo-carrossel.png";
 import criativoInterface from "@/assets/portfolio/criativo-interface.png";
 import criativoLogin from "@/assets/portfolio/criativo-login.png";
+import gramapremiumHero from "@/assets/portfolio/gramapremium-hero.png";
+import gramapremiumProdutos from "@/assets/portfolio/gramapremium-produtos.png";
+import gramapremiumGaleria from "@/assets/portfolio/gramapremium-galeria.png";
+import gramapremiumFooter from "@/assets/portfolio/gramapremium-footer.png";
 
 const dashboards = [
   {
@@ -138,7 +142,28 @@ const criativos = [
   },
 ];
 
-const sites: { title: string; category: string; image: string }[] = [];
+const sites = [
+  {
+    title: "GramaPremium - Hero",
+    category: "Site & Landing Page",
+    image: gramapremiumHero,
+  },
+  {
+    title: "GramaPremium - Produtos",
+    category: "Site & E-commerce",
+    image: gramapremiumProdutos,
+  },
+  {
+    title: "GramaPremium - Galeria",
+    category: "Site & Portfólio",
+    image: gramapremiumGaleria,
+  },
+  {
+    title: "GramaPremium - Footer",
+    category: "Site & Contato",
+    image: gramapremiumFooter,
+  },
+];
 
 type TabType = "dashboards" | "logos" | "criativos" | "sites";
 
