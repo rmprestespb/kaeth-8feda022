@@ -1,14 +1,7 @@
 import { X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import CriativosPricing from "./CriativosPricing";
 
 import friendsPoker from "@/assets/portfolio/friends-poker.png";
 import avantCarwash from "@/assets/portfolio/avant-carwash.png";
@@ -273,36 +266,8 @@ const Portfolio = () => {
           </div>
         </div>
 
-        {/* Pricing Table for Criativos */}
-        {activeTab === "criativos" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mb-12 overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm"
-          >
-            <Table>
-              <TableHeader>
-                <TableRow className="border-border/50 hover:bg-transparent">
-                  <TableHead className="text-primary font-semibold">Serviço</TableHead>
-                  <TableHead className="text-primary font-semibold">Categoria</TableHead>
-                  <TableHead className="text-primary font-semibold">Descrição</TableHead>
-                  <TableHead className="text-primary font-semibold text-right">Valor</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {criativos.map((item) => (
-                  <TableRow key={item.title} className="border-border/50 hover:bg-muted/30">
-                    <TableCell className="font-medium text-foreground">{item.title}</TableCell>
-                    <TableCell className="text-muted-foreground">{item.category}</TableCell>
-                    <TableCell className="text-muted-foreground max-w-xs">{item.description}</TableCell>
-                    <TableCell className="text-right font-bold text-primary">{item.price}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </motion.div>
-        )}
+        {/* Pricing Section for Criativos */}
+        {activeTab === "criativos" && <CriativosPricing />}
 
         {/* Portfolio Grid with Animation */}
         <AnimatePresence mode="wait">
