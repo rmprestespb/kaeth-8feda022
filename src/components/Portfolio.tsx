@@ -1,6 +1,14 @@
 import { X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 import friendsPoker from "@/assets/portfolio/friends-poker.png";
 import avantCarwash from "@/assets/portfolio/avant-carwash.png";
@@ -129,16 +137,22 @@ const criativos = [
     title: "Racing Brands TR",
     category: "Criativo & Animação",
     image: criativoCarrossel,
+    price: "R$ 350,00",
+    description: "Carrossel animado para redes sociais com até 5 slides",
   },
   {
     title: "Rode Certo - Interface",
     category: "Criativo & Design de Interface",
     image: criativoInterface,
+    price: "R$ 500,00",
+    description: "Design de interface completo para aplicativos mobile",
   },
   {
     title: "Rode Certo - Login Seguro",
     category: "Criativo & Marketing",
     image: criativoLogin,
+    price: "R$ 250,00",
+    description: "Criativo para campanhas de marketing digital",
   },
 ];
 
@@ -171,6 +185,8 @@ interface Project {
   title: string;
   category: string;
   image: string;
+  price?: string;
+  description?: string;
 }
 
 const Portfolio = () => {
@@ -256,6 +272,37 @@ const Portfolio = () => {
             </button>
           </div>
         </div>
+
+        {/* Pricing Table for Criativos */}
+        {activeTab === "criativos" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="mb-12 overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm"
+          >
+            <Table>
+              <TableHeader>
+                <TableRow className="border-border/50 hover:bg-transparent">
+                  <TableHead className="text-primary font-semibold">Serviço</TableHead>
+                  <TableHead className="text-primary font-semibold">Categoria</TableHead>
+                  <TableHead className="text-primary font-semibold">Descrição</TableHead>
+                  <TableHead className="text-primary font-semibold text-right">Valor</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {criativos.map((item) => (
+                  <TableRow key={item.title} className="border-border/50 hover:bg-muted/30">
+                    <TableCell className="font-medium text-foreground">{item.title}</TableCell>
+                    <TableCell className="text-muted-foreground">{item.category}</TableCell>
+                    <TableCell className="text-muted-foreground max-w-xs">{item.description}</TableCell>
+                    <TableCell className="text-right font-bold text-primary">{item.price}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </motion.div>
+        )}
 
         {/* Portfolio Grid with Animation */}
         <AnimatePresence mode="wait">
