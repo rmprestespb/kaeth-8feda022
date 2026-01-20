@@ -1,4 +1,6 @@
-import { Mail, Phone, MapPin, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Linkedin, Twitter, Settings } from "lucide-react";
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const quickLinks = [{
@@ -133,10 +135,19 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p>© {currentYear} KaethStudio. Todos os direitos reservados.</p>
-          <p>
-            Desenvolvido com{" "}
-            <span className="gradient-text">♥</span> no Brasil
-          </p>
+          <div className="flex items-center gap-4">
+            <Link 
+              to="/admin/login" 
+              className="flex items-center gap-1 hover:text-foreground transition-colors"
+            >
+              <Settings className="w-3 h-3" />
+              Admin
+            </Link>
+            <p>
+              Desenvolvido com{" "}
+              <span className="gradient-text">♥</span> no Brasil
+            </p>
+          </div>
         </div>
       </div>
     </footer>;
