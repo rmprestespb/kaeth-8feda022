@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import robsonImage from "@/assets/robson-prestes.png";
+import robsonImage from "@/assets/robson-oficial.jpeg";
 import { Target, Eye, Heart } from "lucide-react";
 
 const AboutUs = () => {
