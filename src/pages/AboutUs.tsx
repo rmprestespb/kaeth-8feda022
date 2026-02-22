@@ -26,11 +26,11 @@ const AboutUs = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Image */}
             <div className="relative">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden gradient-border">
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden gradient-border">
                 <img 
                   src={robsonImage} 
                   alt="Robson Prestes - Fundador da Kaeth" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 w-32 h-32 gradient-bg rounded-full opacity-20 blur-2xl" />
