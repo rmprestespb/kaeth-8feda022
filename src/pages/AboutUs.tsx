@@ -51,7 +51,7 @@ const AboutUs = () => {
                 Fundei a agência não apenas para criar designs, mas para oferecer uma consultoria criativa que entende as dores do empreendedor. Minha experiência como líder me ensinou que um projeto só é bem-sucedido quando une organização, cumprimento de prazos e um resultado visual que realmente converte em lucro para o cliente.
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Na Kaeth, transformo minha bagagem de liderança em autoridade para a sua marca, liderando um time focado em tirar sua empresa da caixa e posicioná-la como referência no mercado digital.
+                Na Kaeth, transformo minha trajetória de liderança na autoridade que a sua marca precisa. Com um time especialista, tiramos sua empresa do comum para posicioná-la como referência no digital.
               </p>
             </div>
           </div>
