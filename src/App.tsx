@@ -26,7 +26,7 @@ const App = () => (
             <Route path="/quem-somos" element={<AboutUs />} />
             <Route path="/betaplay" element={<Betaplay />} />
             <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin/register" element={<AdminRegister />} />
+            
             <Route path="/admin" element={<AdminDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
