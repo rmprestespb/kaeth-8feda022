@@ -122,12 +122,6 @@ const AdminLogin = () => {
               {isLoading ? "Entrando..." : "Entrar"}
             </Button>
 
-            <div className="text-center text-sm text-muted-foreground">
-              Não tem uma conta?{' '}
-              <Link to="/admin/register" className="text-primary hover:underline">
-                Criar conta
-              </Link>
-            </div>
           </form>
         </div>
       </motion.div>
