@@ -44,6 +44,45 @@ export type Database = {
         }
         Relationships: []
       }
+      portfolio_projects: {
+        Row: {
+          category: string
+          category_label: string
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string
+          price: string | null
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          category_label: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url: string
+          price?: string | null
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          category_label?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string
+          price?: string | null
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
