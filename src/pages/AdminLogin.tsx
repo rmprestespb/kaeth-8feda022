@@ -122,6 +122,14 @@ const AdminLogin = () => {
               {isLoading ? "Entrando..." : "Entrar"}
             </Button>
 
+            <div className="text-center">
+              <Link
+                to="/admin/forgot-password"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Esqueci minha senha
+              </Link>
+            </div>
           </form>
         </div>
       </motion.div>
