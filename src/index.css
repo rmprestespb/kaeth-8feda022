@@ -47,12 +47,29 @@
     --glass-border: hsl(0 0% 100% / 0.1);
 
     /* Gold accent (planos / assinatura) */
-    --gold: 43 92% 58%;
-    --gold-foreground: 240 10% 6%;
-    --gradient-gold: linear-gradient(135deg, hsl(43 92% 58%) 0%, hsl(28 90% 52%) 100%);
-    --shadow-gold: 0 0 40px hsl(43 92% 58% / 0.28), 0 0 90px hsl(43 92% 58% / 0.12);
+    --gold: 33 74% 62%;
+    --gold-foreground: 350 60% 6%;
+    --gradient-gold: linear-gradient(135deg, hsl(38 80% 68%) 0%, hsl(28 78% 52%) 100%);
+    --shadow-gold: 0 0 40px hsl(33 74% 62% / 0.28), 0 0 90px hsl(33 74% 62% / 0.12);
+
+    /* Bordô / vinho (landing sites por assinatura) */
+    --burgundy: 345 60% 5%;
+    --wine: 352 68% 20%;
+    --bordo: 351 65% 30%;
+    --gradient-burgundy: linear-gradient(160deg, hsl(345 60% 5%) 0%, hsl(352 68% 14%) 45%, hsl(351 65% 24%) 100%);
   }
 }
+
+@layer components {
+  .glow-gold-text {
+    text-shadow: 0 0 24px hsl(33 74% 62% / 0.55), 0 0 60px hsl(33 74% 62% / 0.25);
+  }
+
+  .burgundy-bg {
+    background-image: var(--gradient-burgundy);
+  }
+}
+
 
 @layer base {
   * {
