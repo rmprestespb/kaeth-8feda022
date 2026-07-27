@@ -22,9 +22,7 @@ import { Link } from "react-router-dom";
 
 const WHATSAPP_URL =
   "https://wa.me/5546999350070?text=" +
-  encodeURIComponent(
-    "Olá! Quero meu site profissional por R$ 99,90/mês da Kaeth."
-  );
+  encodeURIComponent("Olá! Quero o plano de R$ 99,90");
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
