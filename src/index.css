@@ -68,6 +68,7 @@
   .burgundy-bg {
     background-image: var(--gradient-burgundy);
   }
+}
 
 
 @layer base {
