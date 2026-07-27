@@ -112,7 +112,7 @@ export const MockWindow = ({
 
 const SiteMockMosaic = () => (
   <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-    <div className="absolute inset-0 opacity-70">
+    <div className="absolute inset-0 opacity-100">
       <MockWindow variant="landing" title="clientes.kaeth.com.br" className="absolute w-64 -left-6 top-10 -rotate-6" />
       <MockWindow variant="ecommerce" title="loja-premium.com" className="absolute w-72 left-28 top-40 rotate-3" />
       <MockWindow variant="dashboard" title="painel.betaplay.io" className="absolute w-80 -left-10 bottom-4 rotate-2" />
@@ -122,7 +122,7 @@ const SiteMockMosaic = () => (
       <MockWindow variant="landing" title="advocacia.site" className="absolute w-72 -right-8 bottom-10 -rotate-4" />
       <MockWindow variant="ecommerce" title="boutique.shop" className="absolute w-60 right-40 bottom-0 rotate-2" />
     </div>
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--burgundy)/0.92)_35%,hsl(var(--burgundy)/0.75)_60%,hsl(var(--burgundy))_100%)]" />
+    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--burgundy)/0.82)_30%,hsl(var(--burgundy)/0.55)_58%,hsl(var(--burgundy))_100%)]" />
   </div>
 );
 
