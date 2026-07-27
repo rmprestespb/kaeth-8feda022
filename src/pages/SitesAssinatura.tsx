@@ -16,9 +16,11 @@ import {
   AlignLeft,
   AlignCenter,
   AlignRight,
+  Type,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import SiteMockMosaic from "@/components/SiteMockMosaic";
 
 const WHATSAPP_URL =
   "https://wa.me/5546999350070?text=" +
@@ -37,65 +39,72 @@ const diferenciais = [
   },
   {
     icon: FileText,
-    title: "3 a 5 Páginas",
+    title: "3 a 5 Páginas Nativas",
     text: "Estrutura completa para apresentar seu negócio com clareza.",
   },
   {
     icon: ImageIcon,
-    title: "Banner Principal Incluso",
-    text: "1 banner de alto impacto na Home para prender a atenção.",
+    title: "1 Banner Incluso",
+    text: "A primeira arte do banner principal é um BÔNUS KAETH.",
   },
   {
     icon: Share2,
-    title: "Integrações Nativas",
+    title: "Integrações Completas",
     text: "Botão flutuante de WhatsApp e links para todas as suas redes sociais.",
   },
 ];
 
 const logoOptions = [
-  { icon: AlignLeft, label: "Alinhado à Esquerda" },
-  { icon: AlignCenter, label: "Centralizado" },
-  { icon: AlignRight, label: "À Direita" },
+  { icon: AlignLeft, label: "Esquerda" },
+  { icon: AlignCenter, label: "Centro" },
+  { icon: AlignRight, label: "Direita" },
 ];
 
 const inclusos = [
   {
     icon: Server,
-    title: "Hospedagem e Manutenção",
-    text: "Seu site sempre no ar, rápido e atualizado — sem dor de cabeça técnica.",
+    title: "Hospedagem Inclusa",
+    text: "Seu site sempre no ar, rápido e seguro — sem dor de cabeça técnica.",
   },
   {
     icon: RefreshCw,
-    title: "Manutenção Visual Mensal",
-    text: "Direito a 1 troca por mês: alterar textos, trocar fotos, mudar a paleta de cores ou atualizar o banner principal.",
+    title: "1 Manutenção Visual Grátis por Mês",
+    text: "Escolha 1 troca por mês: textos, fotos, paleta de cores ou a arte do banner principal.",
   },
   {
     icon: ShieldCheck,
-    title: "Suporte e Estabilidade",
+    title: "Manutenção Ativa e Suporte",
     text: "Sua empresa pronta para vender 24 horas por dia, 7 dias por semana.",
   },
+];
+
+const trocasMensais = [
+  { icon: Type, label: "Alterar textos" },
+  { icon: ImageIcon, label: "Trocar fotos" },
+  { icon: Palette, label: "Atualizar paleta de cores" },
+  { icon: Layout, label: "Atualizar arte do banner" },
 ];
 
 const adicionais = [
   {
     icon: FileText,
-    title: "Páginas Adicionais",
+    title: "Páginas Adicionais Extras",
     text: "Amplie a estrutura do site com novas seções e páginas.",
   },
   {
-    icon: ImageIcon,
-    title: "Banners Extras ou Alterações Frequentes",
-    text: "Campanhas, promoções e trocas além do ritmo mensal.",
-  },
-  {
     icon: Palette,
-    title: "Troca Adicional de Textos e Fotos",
-    text: "Precisou de mais de uma atualização no mês? Sem problema.",
+    title: "Trocas de Fotos / Textos Extras",
+    text: "Alterações além da cota de 1 manutenção visual do mês.",
   },
   {
     icon: PenTool,
-    title: "Vetorização ou Melhoramento de Logotipo",
+    title: "Criação, Vetorização ou Melhoria de Logotipo",
     text: "Sua marca em alta qualidade, pronta para qualquer aplicação.",
+  },
+  {
+    icon: ImageIcon,
+    title: "Banners Extras Adicionais",
+    text: "Campanhas, promoções e novas artes durante o mês.",
   },
 ];
 
@@ -103,16 +112,8 @@ const SitesAssinatura = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* HERO */}
-      <section className="relative overflow-hidden pt-24 pb-20 md:pt-32 md:pb-28">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,hsl(var(--primary)/0.18),transparent_45%),radial-gradient(circle_at_85%_20%,hsl(var(--secondary)/0.16),transparent_45%)]" />
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
-            backgroundSize: "56px 56px",
-          }}
-        />
+      <section className="relative overflow-hidden burgundy-bg pt-28 pb-24 md:pt-36 md:pb-32">
+        <SiteMockMosaic />
 
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
@@ -122,19 +123,22 @@ const SitesAssinatura = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold tracking-wide border border-gold/40 text-gold bg-gold/5">
-              <Sparkles size={14} />
-              CRIAÇÃO DE SITES SOB ASSINATURA
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] md:text-xs font-semibold tracking-[0.18em] border border-gold/50 text-gold bg-foreground/5 backdrop-blur-md">
+              <Sparkles size={13} />
+              AGÊNCIA KAETH • SITES POR ASSINATURA
             </span>
 
-            <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight">
-              Seu Site Profissional por Apenas{" "}
-              <span className="gradient-gold-text">R$ 99,90/mês</span>
+            <h1 className="mt-7 text-4xl md:text-6xl font-extrabold leading-[1.08] text-foreground">
+              Seu Site Profissional e Exclusivo
             </h1>
 
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground">
-              Sem custos altos de criação. Uma presença digital exclusiva, sob
-              medida para destacar o seu negócio.
+            <p className="mt-5 text-4xl md:text-6xl font-extrabold gradient-gold-text glow-gold-text">
+              R$ 99,90/mês
+            </p>
+
+            <p className="mt-6 text-base md:text-xl text-foreground/70 max-w-2xl mx-auto">
+              Sem custos altos de criação. Presença digital moderna, otimizada e
+              única para destacar sua marca no mercado.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -144,7 +148,8 @@ const SitesAssinatura = () => {
                 className="gradient-gold-bg text-gold-foreground font-bold text-base h-14 px-8 rounded-xl glow-gold hover:opacity-90"
               >
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                  Quero Meu Site Agora
+                  <MessageCircle className="mr-2" size={20} />
+                  Quero Meu Site por R$ 99,90
                   <ArrowRight className="ml-2" size={20} />
                 </a>
               </Button>
@@ -152,7 +157,7 @@ const SitesAssinatura = () => {
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-14 px-8 rounded-xl text-base"
+                className="h-14 px-8 rounded-xl text-base border-gold/40 bg-foreground/5 backdrop-blur-md hover:bg-foreground/10"
               >
                 <Link to="/#portfolio">Ver portfólio</Link>
               </Button>
@@ -177,8 +182,8 @@ const SitesAssinatura = () => {
                 <span className="gradient-gold-text">Vitrine</span>
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Tudo o que um site de verdade precisa — pelo preço de um
-                cafezinho por dia.
+                Seu site nunca será igual ao de ninguém — tudo o que um site de
+                verdade precisa, pelo preço de um cafezinho por dia.
               </p>
             </div>
 
@@ -206,7 +211,7 @@ const SitesAssinatura = () => {
               <div className="flex items-center gap-2 mb-4">
                 <Layout size={18} className="text-gold" />
                 <h3 className="font-semibold">
-                  Posicionamento de Logotipo — escolha o layout do topo
+                  Opções de Logotipo no Topo — escolha onde sua marca aparece
                 </h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -240,11 +245,12 @@ const SitesAssinatura = () => {
         <div className="container mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold">
-              O que está incluso na{" "}
-              <span className="gradient-text">assinatura mensal</span>
+              O que o valor mensal de{" "}
+              <span className="gradient-gold-text">R$ 99,90</span> dá direito?
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Por R$ 99,90/mês você mantém seu site vivo, atualizado e vendendo.
+              Manutenção ativa, hospedagem e uma troca visual todo mês para
+              manter seu site sempre vivo.
             </p>
           </div>
 
@@ -258,11 +264,11 @@ const SitesAssinatura = () => {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="glass-card rounded-2xl p-7"
               >
-                <div className="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center">
-                  <item.icon className="text-primary-foreground" size={22} />
+                <div className="w-12 h-12 rounded-xl gradient-gold-bg flex items-center justify-center">
+                  <item.icon className="text-gold-foreground" size={22} />
                 </div>
                 <h3 className="mt-5 text-lg font-semibold flex items-start gap-2">
-                  <Check size={18} className="text-secondary mt-1 shrink-0" />
+                  <Check size={18} className="text-gold mt-1 shrink-0" />
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
@@ -270,6 +276,23 @@ const SitesAssinatura = () => {
                 </p>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-10 max-w-4xl mx-auto rounded-3xl border border-gold/30 bg-card/50 p-8">
+            <p className="text-center font-semibold">
+              Escolha <span className="text-gold">1 troca por mês</span> entre:
+            </p>
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+              {trocasMensais.map((t) => (
+                <div
+                  key={t.label}
+                  className="rounded-2xl border border-border bg-background/60 p-5 text-center"
+                >
+                  <t.icon className="mx-auto text-gold" size={20} />
+                  <p className="mt-3 text-sm font-medium">{t.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -279,11 +302,12 @@ const SitesAssinatura = () => {
         <div className="container mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold">
-              Serviços <span className="gradient-text">adicionais</span>
+              Transparência total:{" "}
+              <span className="gradient-gold-text">serviços extras</span>
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Qualquer ajuste além do pacote mensal ou solicitação extra pode ser
-              contratado separadamente.
+              Qualquer solicitação além do pacote mensal possui um custo
+              adicional acessível, sempre combinado antes.
             </p>
           </div>
 
@@ -296,7 +320,7 @@ const SitesAssinatura = () => {
                 }`}
               >
                 <div className="shrink-0 w-11 h-11 rounded-xl bg-muted flex items-center justify-center">
-                  <item.icon className="text-secondary" size={20} />
+                  <item.icon className="text-gold" size={20} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold">{item.title}</h3>
@@ -326,13 +350,15 @@ const SitesAssinatura = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl border border-gold/30 bg-card/60 backdrop-blur-xl p-10 md:p-14 text-center glow-gold"
+            className="relative overflow-hidden rounded-3xl border border-gold/30 burgundy-bg p-10 md:p-14 text-center glow-gold"
           >
             <h2 className="text-3xl md:text-5xl font-extrabold">
               Comece hoje por{" "}
-              <span className="gradient-gold-text">R$ 99,90/mês</span>
+              <span className="gradient-gold-text glow-gold-text">
+                R$ 99,90/mês
+              </span>
             </h2>
-            <p className="mt-4 text-muted-foreground text-lg max-w-xl mx-auto">
+            <p className="mt-4 text-foreground/70 text-lg max-w-xl mx-auto">
               Design exclusivo, hospedagem, manutenção e suporte. Fale com a
               gente agora e tire seu site do papel.
             </p>
@@ -343,7 +369,7 @@ const SitesAssinatura = () => {
             >
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-2" size={20} />
-                Fechar pelo WhatsApp
+                Quero Meu Site por R$ 99,90
               </a>
             </Button>
           </motion.div>
