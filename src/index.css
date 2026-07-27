@@ -118,6 +118,19 @@
   .glow-text {
     text-shadow: 0 0 40px hsl(270 91% 65% / 0.5);
   }
+
+  .gradient-gold-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-gold);
+  }
+
+  .gradient-gold-bg {
+    background-image: var(--gradient-gold);
+  }
+
+  .glow-gold {
+    box-shadow: var(--shadow-gold);
+  }
 }
 
 @layer utilities {
