@@ -58,6 +58,10 @@ export default {
           DEFAULT: "hsl(var(--gold))",
           foreground: "hsl(var(--gold-foreground))",
         },
+        burgundy: "hsl(var(--burgundy))",
+        wine: "hsl(var(--wine))",
+        bordo: "hsl(var(--bordo))",
+
       },
       borderRadius: {
         lg: "var(--radius)",
