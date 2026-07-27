@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AboutUs from "./pages/AboutUs";
 import Betaplay from "./pages/Betaplay";
+import SitesAssinatura from "./pages/SitesAssinatura";
 import AdminLogin from "./pages/AdminLogin";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
@@ -28,6 +29,8 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/quem-somos" element={<AboutUs />} />
             <Route path="/betaplay" element={<Betaplay />} />
+            <Route path="/sites-assinatura" element={<SitesAssinatura />} />
+
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />

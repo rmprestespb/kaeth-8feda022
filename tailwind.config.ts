@@ -54,6 +54,10 @@ export default {
           purple: "hsl(270, 91%, 65%)",
           cyan: "hsl(187, 94%, 43%)",
         },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          foreground: "hsl(var(--gold-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

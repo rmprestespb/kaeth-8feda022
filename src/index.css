@@ -45,6 +45,12 @@
     /* Glassmorphism */
     --glass-bg: hsl(240 10% 10% / 0.6);
     --glass-border: hsl(0 0% 100% / 0.1);
+
+    /* Gold accent (planos / assinatura) */
+    --gold: 43 92% 58%;
+    --gold-foreground: 240 10% 6%;
+    --gradient-gold: linear-gradient(135deg, hsl(43 92% 58%) 0%, hsl(28 90% 52%) 100%);
+    --shadow-gold: 0 0 40px hsl(43 92% 58% / 0.28), 0 0 90px hsl(43 92% 58% / 0.12);
   }
 }
 
@@ -111,6 +117,19 @@
 
   .glow-text {
     text-shadow: 0 0 40px hsl(270 91% 65% / 0.5);
+  }
+
+  .gradient-gold-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-gold);
+  }
+
+  .gradient-gold-bg {
+    background-image: var(--gradient-gold);
+  }
+
+  .glow-gold {
+    box-shadow: var(--shadow-gold);
   }
 }
 
