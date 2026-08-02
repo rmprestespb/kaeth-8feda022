@@ -317,55 +317,6 @@ const ModelosPremium = () => {
         <MessageCircle className="text-emerald-foreground" size={26} />
       </a>
 
-      {/* Detalhes do modelo */}
-      <Dialog open={!!selecionado} onOpenChange={(o) => !o && setSelecionado(null)}>
-        <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-lg">
-          {selecionado && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-xl">
-                  {selecionado.numero} — {selecionado.nome}
-                </DialogTitle>
-                <DialogDescription>
-                  {selecionado.categoria} • {selecionado.descricao}
-                </DialogDescription>
-              </DialogHeader>
-
-              <div className="mt-2">
-                <ModelMockup index={Number(selecionado.numero)} name={selecionado.nome} />
-              </div>
-
-              <p className="mt-4 text-sm font-semibold">
-                Tudo o que este modelo inclui:
-              </p>
-              <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {recursosModelo.map((r) => (
-                  <li key={r} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Check size={14} className="shrink-0 text-emerald" />
-                    {r}
-                  </li>
-                ))}
-              </ul>
-
-              <Button
-                asChild
-                className="mt-6 h-12 w-full rounded-xl gradient-emerald-bg font-bold text-emerald-foreground hover:opacity-90"
-              >
-                <a
-                  href={waLink(
-                    `Olá! Quero o modelo ${selecionado.numero} — ${selecionado.nome} pelo plano de R$ 99,90/mês.`
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="mr-2" size={18} />
-                  Solicitar Este Modelo
-                </a>
-              </Button>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
