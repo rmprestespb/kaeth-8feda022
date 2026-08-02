@@ -33,6 +33,7 @@ const App = () => (
             <Route path="/betaplay" element={<Betaplay />} />
             <Route path="/sites-assinatura" element={<SitesAssinatura />} />
             <Route path="/modelos" element={<ModelosPremium />} />
+            <Route path="/modelos/:slug" element={<ModeloDemo />} />
 
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/forgot-password" element={<ForgotPassword />} />
