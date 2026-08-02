@@ -176,13 +176,15 @@ const ModelosPremium = () => {
 
                   <div className="mt-5 flex gap-2">
                     <Button
+                      asChild
                       variant="outline"
                       size="sm"
                       className="flex-1 rounded-xl border-foreground/20 bg-foreground/5 hover:bg-foreground/10"
-                      onClick={() => setSelecionado(m)}
                     >
-                      <Eye size={15} className="mr-1.5" />
-                      Ver Modelo
+                      <Link to={`/modelos/${m.slug}`}>
+                        <Eye size={15} className="mr-1.5" />
+                        Ver Modelo
+                      </Link>
                     </Button>
                     <Button
                       asChild
