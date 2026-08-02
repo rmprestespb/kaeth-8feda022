@@ -57,6 +57,16 @@
     --wine: 352 68% 20%;
     --bordo: 351 65% 30%;
     --gradient-burgundy: linear-gradient(160deg, hsl(345 60% 5%) 0%, hsl(352 68% 14%) 45%, hsl(351 65% 24%) 100%);
+
+    /* Modelos Premium (esmeralda / dourado / grafite) */
+    --emerald: 147 82% 34%;
+    --emerald-foreground: 0 0% 100%;
+    --graphite: 0 0% 11%;
+    --graphite-foreground: 0 0% 98%;
+    --light-gray: 0 0% 97%;
+    --gradient-emerald: linear-gradient(135deg, hsl(147 82% 34%) 0%, hsl(160 70% 42%) 100%);
+    --shadow-emerald: 0 0 40px hsl(147 82% 34% / 0.28), 0 18px 60px hsl(147 82% 34% / 0.14);
+    --shadow-soft: 0 10px 30px -12px hsl(0 0% 0% / 0.55);
   }
 }
 
@@ -147,6 +157,23 @@
 
   .glow-gold {
     box-shadow: var(--shadow-gold);
+  }
+
+  .gradient-emerald-bg {
+    background-image: var(--gradient-emerald);
+  }
+
+  .gradient-emerald-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-emerald);
+  }
+
+  .glow-emerald {
+    box-shadow: var(--shadow-emerald);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
   }
 }
 
