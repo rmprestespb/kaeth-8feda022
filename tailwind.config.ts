@@ -61,6 +61,16 @@ export default {
         burgundy: "hsl(var(--burgundy))",
         wine: "hsl(var(--wine))",
         bordo: "hsl(var(--bordo))",
+        emerald: {
+          DEFAULT: "hsl(var(--emerald))",
+          foreground: "hsl(var(--emerald-foreground))",
+        },
+        graphite: {
+          DEFAULT: "hsl(var(--graphite))",
+          foreground: "hsl(var(--graphite-foreground))",
+        },
+        "light-gray": "hsl(var(--light-gray))",
+
 
       },
       borderRadius: {
