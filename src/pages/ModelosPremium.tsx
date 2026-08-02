@@ -49,7 +49,7 @@ const contadores = [
 ];
 
 const ModelosPremium = () => {
-  const [selecionado, setSelecionado] = useState<Modelo | null>(null);
+
 
   return (
     <div className="min-h-screen bg-graphite text-graphite-foreground">
