@@ -1,77 +1,14 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  Check,
-  MessageCircle,
-  Sparkles,
-  Eye,
-  Scale,
-  Stethoscope,
-  Smile,
-  Scissors,
-  Flower2,
-  UtensilsCrossed,
-  Pizza,
-  Dumbbell,
-  HeartPulse,
-  Brain,
-  PawPrint,
-  Home,
-  HardHat,
-  Ruler,
-  Calculator,
-  Sun,
-  Shirt,
-  BedDouble,
-  Wrench,
-  Building2,
-} from "lucide-react";
+import { ArrowRight, Check, MessageCircle, Sparkles, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import ModelMockup from "@/components/ModelMockup";
+import { modelos } from "@/data/modelos";
 
 const WHATSAPP_BASE = "https://wa.me/5546999350070?text=";
 const waLink = (msg: string) => WHATSAPP_BASE + encodeURIComponent(msg);
 const WHATSAPP_PLANO = waLink("Olá! Quero o plano de R$ 99,90");
 
-type Modelo = {
-  numero: string;
-  nome: string;
-  categoria: string;
-  descricao: string;
-  icon: typeof Scale;
-};
-
-const modelos: Modelo[] = [
-  { numero: "01", nome: "Advocacia Premium", categoria: "Jurídico", descricao: "Escritórios de advocacia modernos.", icon: Scale },
-  { numero: "02", nome: "Clínica Médica", categoria: "Saúde", descricao: "Consultórios e clínicas.", icon: Stethoscope },
-  { numero: "03", nome: "Odontologia", categoria: "Saúde", descricao: "Dentistas e clínicas odontológicas.", icon: Smile },
-  { numero: "04", nome: "Barbearia Premium", categoria: "Beleza", descricao: "Visual moderno e masculino.", icon: Scissors },
-  { numero: "05", nome: "Salão de Beleza", categoria: "Beleza", descricao: "Elegante e feminino.", icon: Flower2 },
-  { numero: "06", nome: "Restaurante", categoria: "Alimentação", descricao: "Cardápio online e pedidos pelo WhatsApp.", icon: UtensilsCrossed },
-  { numero: "07", nome: "Pizzaria", categoria: "Alimentação", descricao: "Promoções, sabores e delivery.", icon: Pizza },
-  { numero: "08", nome: "Academia", categoria: "Fitness", descricao: "Treinos, planos e professores.", icon: Dumbbell },
-  { numero: "09", nome: "Personal Trainer", categoria: "Fitness", descricao: "Agenda online, resultados e contato.", icon: HeartPulse },
-  { numero: "10", nome: "Psicólogo", categoria: "Saúde", descricao: "Visual leve e humanizado.", icon: Brain },
-  { numero: "11", nome: "Veterinária", categoria: "Pet", descricao: "Pet Shop + Clínica.", icon: PawPrint },
-  { numero: "12", nome: "Imobiliária", categoria: "Imóveis", descricao: "Venda e aluguel de imóveis.", icon: Home },
-  { numero: "13", nome: "Engenharia", categoria: "Projetos", descricao: "Projetos, obras e portfólio.", icon: HardHat },
-  { numero: "14", nome: "Arquitetura", categoria: "Projetos", descricao: "Projetos sofisticados.", icon: Ruler },
-  { numero: "15", nome: "Contabilidade", categoria: "Serviços", descricao: "Empresas, MEI e consultoria.", icon: Calculator },
-  { numero: "16", nome: "Energia Solar", categoria: "Energia", descricao: "Captação de clientes e orçamentos.", icon: Sun },
-  { numero: "17", nome: "Loja de Roupas", categoria: "Varejo", descricao: "Catálogo online.", icon: Shirt },
-  { numero: "18", nome: "Hotel ou Pousada", categoria: "Turismo", descricao: "Reservas e galeria.", icon: BedDouble },
-  { numero: "19", nome: "Auto Center", categoria: "Automotivo", descricao: "Oficina mecânica e serviços.", icon: Wrench },
-  { numero: "20", nome: "Empresa Corporativa", categoria: "Institucional", descricao: "Modelo institucional para qualquer empresa.", icon: Building2 },
-];
 
 const recursosModelo = [
   "Página Inicial",
@@ -112,7 +49,7 @@ const contadores = [
 ];
 
 const ModelosPremium = () => {
-  const [selecionado, setSelecionado] = useState<Modelo | null>(null);
+
 
   return (
     <div className="min-h-screen bg-graphite text-graphite-foreground">
@@ -239,13 +176,15 @@ const ModelosPremium = () => {
 
                   <div className="mt-5 flex gap-2">
                     <Button
+                      asChild
                       variant="outline"
                       size="sm"
                       className="flex-1 rounded-xl border-foreground/20 bg-foreground/5 hover:bg-foreground/10"
-                      onClick={() => setSelecionado(m)}
                     >
-                      <Eye size={15} className="mr-1.5" />
-                      Ver Modelo
+                      <Link to={`/modelos/${m.slug}`}>
+                        <Eye size={15} className="mr-1.5" />
+                        Ver Modelo
+                      </Link>
                     </Button>
                     <Button
                       asChild
@@ -380,55 +319,6 @@ const ModelosPremium = () => {
         <MessageCircle className="text-emerald-foreground" size={26} />
       </a>
 
-      {/* Detalhes do modelo */}
-      <Dialog open={!!selecionado} onOpenChange={(o) => !o && setSelecionado(null)}>
-        <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-lg">
-          {selecionado && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-xl">
-                  {selecionado.numero} — {selecionado.nome}
-                </DialogTitle>
-                <DialogDescription>
-                  {selecionado.categoria} • {selecionado.descricao}
-                </DialogDescription>
-              </DialogHeader>
-
-              <div className="mt-2">
-                <ModelMockup index={Number(selecionado.numero)} name={selecionado.nome} />
-              </div>
-
-              <p className="mt-4 text-sm font-semibold">
-                Tudo o que este modelo inclui:
-              </p>
-              <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {recursosModelo.map((r) => (
-                  <li key={r} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Check size={14} className="shrink-0 text-emerald" />
-                    {r}
-                  </li>
-                ))}
-              </ul>
-
-              <Button
-                asChild
-                className="mt-6 h-12 w-full rounded-xl gradient-emerald-bg font-bold text-emerald-foreground hover:opacity-90"
-              >
-                <a
-                  href={waLink(
-                    `Olá! Quero o modelo ${selecionado.numero} — ${selecionado.nome} pelo plano de R$ 99,90/mês.`
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="mr-2" size={18} />
-                  Solicitar Este Modelo
-                </a>
-              </Button>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
