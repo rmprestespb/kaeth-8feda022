@@ -159,7 +159,7 @@ const SitesAssinatura = () => {
                 variant="outline"
                 className="h-14 px-8 rounded-xl text-base border-gold/40 bg-foreground/5 backdrop-blur-md hover:bg-foreground/10"
               >
-                <Link to="/#portfolio">Ver portfólio</Link>
+                <Link to="/modelos">Ver modelos</Link>
               </Button>
             </div>
           </motion.div>
