@@ -200,7 +200,7 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
               </div>
             </motion.div>
             <div
-              className={`absolute -bottom-6 -left-4 z-10 rounded-2xl border ${border} ${dark ? "bg-[hsl(220_18%_10%)]" : "bg-white"} p-4 shadow-2xl`}
+              className={`mt-5 inline-block rounded-2xl border ${border} ${dark ? "bg-[hsl(220_18%_10%)]" : "bg-white"} px-5 py-4 shadow-xl`}
             >
               <AnimatedCounter
                 to={1500}
