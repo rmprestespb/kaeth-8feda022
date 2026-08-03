@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import PreviewToolbar, { type Device } from "@/components/demo/PreviewToolbar";
 import DemoSite from "@/components/demo/DemoSite";
 import useDemoSeo from "@/components/demo/useDemoSeo";
-import { getModelo } from "@/data/modelos";
+import { getModelo, type Modelo } from "@/data/modelos";
 import NotFound from "./NotFound";
 
 const WA = "5546999350070";
@@ -16,21 +16,14 @@ const wa = (msg: string) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}
 
 const larguras: Record<Device, number | null> = { desktop: null, tablet: 834, mobile: 390 };
 
-const ModeloDemo = () => {
-  const { slug } = useParams();
-  const modelo = getModelo(slug);
+const DemoPage = ({ m }: { m: Modelo }) => {
   const [device, setDevice] = useState<Device>("desktop");
   const [nome, setNome] = useState("");
   const [contato, setContato] = useState("");
   const [msg, setMsg] = useState("");
 
-  if (!modelo) return <NotFound />;
-
-  return <Demo />;
-
-  function Demo() {
-    useDemoSeo(modelo!);
-    const m = modelo!;
+  useDemoSeo(m);
+  {
     const largura = larguras[device];
 
     const contratarMsg = `Olá! Quero contratar o plano de R$ 99,90/mês da Agência Kaeth.\n\nModelo: ${m.numero} — ${m.nome}${
@@ -146,6 +139,13 @@ const ModeloDemo = () => {
       </div>
     );
   }
+};
+
+const ModeloDemo = () => {
+  const { slug } = useParams();
+  const modelo = getModelo(slug);
+  if (!modelo) return <NotFound />;
+  return <DemoPage key={modelo.slug} m={modelo} />;
 };
 
 export default ModeloDemo;
