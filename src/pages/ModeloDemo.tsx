@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -60,12 +60,13 @@ const DemoPage = ({ m }: { m: Modelo }) => {
           <DemoSite modelo={m} />
         ) : (
           <div className="flex justify-center px-3 pb-10">
-            <div
+            <iframe
+              key={device}
+              title={`Preview ${device} — ${m.nome}`}
+              src={`/modelos/${m.slug}?frame=1`}
               style={{ width: largura, maxWidth: "100%" }}
-              className="h-[calc(100vh-190px)] overflow-y-auto rounded-[2rem] border-[6px] border-foreground/15 bg-background shadow-2xl transition-all duration-300"
-            >
-              <DemoSite modelo={m} contained />
-            </div>
+              className="h-[calc(100vh-190px)] rounded-[2rem] border-[6px] border-foreground/15 bg-background shadow-2xl transition-all duration-300"
+            />
           </div>
         )}
 
@@ -143,8 +144,10 @@ const DemoPage = ({ m }: { m: Modelo }) => {
 
 const ModeloDemo = () => {
   const { slug } = useParams();
+  const [params] = useSearchParams();
   const modelo = getModelo(slug);
   if (!modelo) return <NotFound />;
+  if (params.get("frame") === "1") return <DemoSite modelo={modelo} contained />;
   return <DemoPage key={modelo.slug} m={modelo} />;
 };
 
