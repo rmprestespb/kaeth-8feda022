@@ -618,7 +618,7 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
               <p className={`mt-4 text-base leading-relaxed md:text-lg ${textMuted}`}>“{depoimento.texto}”</p>
               <div className="mt-6 flex items-center gap-3">
                 <img
-                  src={`https://i.pravatar.cc/96?img=${((modelo.numero + dep * 7) % 70) + 1}`}
+                  src={`https://i.pravatar.cc/96?img=${((Number(modelo.numero) + dep * 7) % 70) + 1}`}
                   alt={depoimento.nome}
                   loading="lazy"
                   className="h-11 w-11 rounded-full object-cover"
