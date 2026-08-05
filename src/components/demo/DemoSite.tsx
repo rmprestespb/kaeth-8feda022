@@ -1,23 +1,32 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
+  Award,
+  BadgeCheck,
   Check,
+  ChevronLeft,
+  ChevronRight,
   Clock,
+  Expand,
+  Eye,
+  Facebook,
+  Gem,
+  Heart,
+  Instagram,
   Mail,
   MapPin,
+  Menu,
   MessageCircle,
   Phone,
   Quote,
   Send,
+  ShieldCheck,
+  Sparkles,
   Star,
-  ChevronLeft,
-  ChevronRight,
-  Expand,
-  Facebook,
-  Instagram,
   Target,
-  Eye,
-  Heart,
+  Users,
+  X,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,6 +39,7 @@ import {
 } from "@/components/ui/accordion";
 import AnimatedCounter from "./AnimatedCounter";
 import Lightbox from "./Lightbox";
+import { getTema } from "@/data/temas";
 import type { Modelo } from "@/data/modelos";
 
 const WA = "5546999350070";
@@ -42,22 +52,17 @@ const fadeUp = {
   transition: { duration: 0.55 },
 } as const;
 
-const SERIF = ["Jurídico", "Contabilidade", "Hospedagem", "Arquitetura", "Corporativo"];
-
-const numeros = [
-  { to: 350, prefix: "+", label: "Clientes" },
-  { to: 12, prefix: "+", label: "Anos de atuação" },
-  { to: 900, prefix: "+", label: "Projetos entregues" },
-  { to: 98, suffix: "%", label: "Satisfação" },
-];
+const servicoIcons = [Sparkles, ShieldCheck, Zap, Gem, Award, BadgeCheck, Users, Heart];
 
 type Props = { modelo: Modelo; contained?: boolean };
 
-/** Estrutura base de todos os sites de demonstração. Herda cores/fontes/conteúdo do modelo. */
+/** Estrutura base de todos os sites de demonstração — tipografia, layout de hero e imagens vêm do tema do segmento. */
 const DemoSite = ({ modelo, contained = false }: Props) => {
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [dep, setDep] = useState(0);
+  const [menu, setMenu] = useState(false);
 
+  const tema = getTema(modelo.slug);
   const dark = modelo.dark;
   const surface = dark ? "bg-[hsl(220_18%_9%)]" : "bg-[hsl(0_0%_100%)]";
   const surfaceAlt = dark ? "bg-[hsl(220_18%_12%)]" : "bg-[hsl(220_16%_97%)]";
@@ -65,68 +70,200 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
   const textMuted = dark ? "text-[hsl(0_0%_97%/0.65)]" : "text-[hsl(220_15%_38%)]";
   const border = dark ? "border-[hsl(0_0%_100%/0.1)]" : "border-[hsl(220_15%_88%)]";
   const cardBg = dark ? "bg-[hsl(0_0%_100%/0.04)]" : "bg-[hsl(0_0%_100%)]";
-  const heading = SERIF.includes(modelo.categoria) ? "font-serif" : "font-sans";
+  const r = tema.radius;
+
+  const hf = { fontFamily: tema.fontTitulo } as React.CSSProperties;
+  const h1 = `${tema.tituloClass}`;
+  const img = (i: number) => tema.imagens[i % tema.imagens.length];
 
   const nav = [
     { label: "Início", href: "#top" },
     { label: "Sobre", href: "#sobre" },
     { label: "Serviços", href: "#servicos" },
-    { label: "Galeria", href: "#galeria" },
+    { label: tema.portfolioLabel, href: "#galeria" },
     { label: "Depoimentos", href: "#depoimentos" },
+    { label: "Blog", href: "#blog" },
     { label: "Contato", href: "#contato" },
   ];
 
   const depoimento = modelo.depoimentos[dep];
   const orcamento = wa(`Olá! Quero solicitar um orçamento com a ${modelo.empresa}.`);
+  const mapa = `https://www.google.com/maps?q=${encodeURIComponent(modelo.endereco)}&output=embed`;
 
-  return (
-    <div
-      className={`${surface} ${text}`}
-      style={{ "--dp": modelo.primary, "--da": modelo.accent } as React.CSSProperties}
+  const heroBadge = (
+    <span
+      className={`inline-flex items-center gap-2 ${r} border border-[hsl(var(--dp))]/40 bg-[hsl(var(--dp))]/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--dp))]`}
     >
-      {/* HEADER PREMIUM */}
-      <header
-        className={`sticky ${contained ? "top-0" : "top-24 lg:top-[104px]"} z-40 border-b ${border} ${
-          dark ? "bg-[hsl(220_18%_9%/0.85)]" : "bg-[hsl(0_0%_100%/0.92)]"
-        } backdrop-blur-md`}
-      >
-        <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
-          <a href="#top" className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[hsl(var(--dp))]">
-              <modelo.icon size={18} className="text-white" />
-            </span>
-            <span className="leading-tight">
-              <span className={`block text-sm font-extrabold ${heading}`}>{modelo.empresa}</span>
-              <span className={`block text-[10px] uppercase tracking-widest ${textMuted}`}>
-                {modelo.tagline}
-              </span>
-            </span>
-          </a>
-          <nav className="hidden items-center gap-6 xl:flex">
-            {nav.map((n) => (
-              <a
-                key={n.href}
-                href={n.href}
-                className={`text-sm font-medium ${textMuted} transition-colors hover:text-[hsl(var(--dp))]`}
-              >
-                {n.label}
-              </a>
-            ))}
-          </nav>
-          <Button
-            asChild
-            size="sm"
-            className="shrink-0 rounded-full bg-[hsl(var(--dp))] text-white transition-transform hover:scale-[1.03] hover:bg-[hsl(var(--dp))]/90"
-          >
-            <a href={orcamento} target="_blank" rel="noopener noreferrer">
-              <Phone size={14} className="mr-1.5" />
-              Solicitar Orçamento
-            </a>
-          </Button>
-        </div>
-      </header>
+      <Star size={12} /> {modelo.categoria}
+    </span>
+  );
 
-      {/* HERO */}
+  const heroBotoes = (light?: boolean) => (
+    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+      <Button
+        asChild
+        size="lg"
+        className={`h-13 ${r} bg-[hsl(var(--dp))] px-7 font-bold text-white shadow-lg transition-transform hover:scale-[1.02] hover:bg-[hsl(var(--dp))]/90`}
+      >
+        <a href={orcamento} target="_blank" rel="noopener noreferrer">
+          <MessageCircle size={18} className="mr-2" />
+          {tema.ctaLabel}
+        </a>
+      </Button>
+      <Button
+        asChild
+        size="lg"
+        variant="outline"
+        className={`h-13 ${r} px-7 ${light ? "border-white/40 bg-white/10 text-white hover:text-white" : `${border} ${textMuted}`} transition-colors hover:text-[hsl(var(--da))]`}
+      >
+        <a href="#servicos">Ver serviços</a>
+      </Button>
+    </div>
+  );
+
+  const heroSelos = (light?: boolean) => (
+    <div className={`mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm ${light ? "text-white/75" : textMuted}`}>
+      <span className="flex items-center gap-2">
+        <Clock size={15} className="text-[hsl(var(--da))]" /> Atendimento rápido
+      </span>
+      <span className="flex items-center gap-2">
+        <Check size={15} className="text-[hsl(var(--da))]" /> Equipe especializada
+      </span>
+      <span className="flex items-center gap-2">
+        <MapPin size={15} className="text-[hsl(var(--da))]" />
+        {modelo.endereco.split("—")[1]?.trim() || "Centro"}
+      </span>
+    </div>
+  );
+
+  /* ---------------- HERO POR LAYOUT ---------------- */
+  const renderHero = () => {
+    if (tema.layout === "fullbleed")
+      return (
+        <section id="top" className="relative min-h-[86vh] overflow-hidden">
+          <img src={img(0)} alt={modelo.empresa} className="absolute inset-0 h-full w-full object-cover" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(180deg, hsl(220 20% 4% / 0.55) 0%, hsl(220 20% 4% / 0.8) 55%, hsl(var(--dp) / 0.55) 100%)`,
+            }}
+          />
+          <div className="container relative z-10 mx-auto flex min-h-[86vh] max-w-3xl flex-col items-center justify-center px-4 py-24 text-center">
+            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }}>
+              {heroBadge}
+              <h1 style={hf} className={`mt-6 text-4xl leading-[1.05] text-white md:text-6xl ${h1}`}>
+                {modelo.heroTitulo}
+              </h1>
+              <p className="mx-auto mt-6 max-w-xl text-base text-white/80 md:text-lg">{modelo.heroSub}</p>
+              <div className="flex justify-center">{heroBotoes(true)}</div>
+            </motion.div>
+          </div>
+        </section>
+      );
+
+    if (tema.layout === "overlay-left")
+      return (
+        <section id="top" className="relative overflow-hidden">
+          <div className="grid lg:grid-cols-[1.05fr_1fr]">
+            <div className={`relative flex items-center px-4 py-20 md:py-28 ${surfaceAlt}`}>
+              <div
+                className="absolute inset-0"
+                aria-hidden="true"
+                style={{
+                  background: `radial-gradient(70% 80% at 0% 0%, hsl(var(--dp) / ${dark ? 0.35 : 0.14}), transparent 70%)`,
+                }}
+              />
+              <motion.div
+                initial={{ opacity: 0, x: -24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="container relative z-10 mx-auto max-w-xl lg:ml-auto lg:mr-10 lg:px-0"
+              >
+                {heroBadge}
+                <h1 style={hf} className={`mt-6 text-4xl leading-[1.08] md:text-5xl ${h1}`}>
+                  {modelo.heroTitulo}
+                </h1>
+                <p className={`mt-6 text-base md:text-lg ${textMuted}`}>{modelo.heroSub}</p>
+                {heroBotoes()}
+                {heroSelos()}
+              </motion.div>
+            </div>
+            <div className="relative min-h-[340px]">
+              <img src={img(0)} alt={modelo.empresa} className="absolute inset-0 h-full w-full object-cover" />
+              <div
+                className="absolute inset-0"
+                style={{ background: `linear-gradient(120deg, hsl(var(--dp) / 0.45), transparent 60%)` }}
+              />
+            </div>
+          </div>
+        </section>
+      );
+
+    if (tema.layout === "duo")
+      return (
+        <section id="top" className="relative overflow-hidden py-16 md:py-24">
+          <div
+            className="absolute inset-0"
+            aria-hidden="true"
+            style={{
+              background: `radial-gradient(90% 70% at 50% 0%, hsl(var(--da) / ${dark ? 0.28 : 0.13}), transparent 70%)`,
+            }}
+          />
+          <div className="container relative z-10 mx-auto px-4 text-center">
+            <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              {heroBadge}
+              <h1 style={hf} className={`mx-auto mt-6 max-w-3xl text-4xl leading-[1.08] md:text-6xl ${h1}`}>
+                {modelo.heroTitulo}
+              </h1>
+              <p className={`mx-auto mt-5 max-w-xl text-base md:text-lg ${textMuted}`}>{modelo.heroSub}</p>
+              <div className="flex justify-center">{heroBotoes()}</div>
+            </motion.div>
+            <div className="mt-14 grid gap-4 sm:grid-cols-3">
+              {[1, 0, 2].map((n, i) => (
+                <motion.img
+                  key={n}
+                  src={img(n)}
+                  alt={`${modelo.empresa} ${i + 1}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.12 * i }}
+                  className={`h-56 w-full ${r} object-cover shadow-xl sm:h-72 ${i === 1 ? "sm:-mt-8 sm:h-80" : ""}`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+
+    if (tema.layout === "editorial")
+      return (
+        <section id="top" className="relative overflow-hidden py-16 md:py-24">
+          <div className="container mx-auto grid items-end gap-10 px-4 lg:grid-cols-[1.1fr_0.9fr]">
+            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              {heroBadge}
+              <h1 style={hf} className={`mt-7 text-[2.6rem] leading-[1.02] md:text-[4.2rem] ${h1}`}>
+                {modelo.heroTitulo}
+              </h1>
+              <div className={`mt-7 flex flex-col gap-6 border-t ${border} pt-7 md:flex-row`}>
+                <p className={`max-w-md text-base ${textMuted}`}>{modelo.heroSub}</p>
+                <img src={img(2)} alt="" className={`h-32 w-full ${r} object-cover md:w-48`} />
+              </div>
+              {heroBotoes()}
+            </motion.div>
+            <motion.img
+              src={img(0)}
+              alt={modelo.empresa}
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className={`h-[420px] w-full ${r} object-cover shadow-2xl md:h-[560px]`}
+            />
+          </div>
+        </section>
+      );
+
+    /* split (padrão) */
+    return (
       <section id="top" className="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28">
         <div
           className="absolute inset-0"
@@ -137,45 +274,13 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
         />
         <div className="container relative z-10 mx-auto grid items-center gap-12 px-4 lg:grid-cols-2">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--dp))]/40 bg-[hsl(var(--dp))]/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--dp))]">
-              <Star size={12} /> {modelo.categoria}
-            </span>
-            <h1 className={`mt-6 text-3xl font-extrabold leading-[1.1] md:text-5xl ${heading}`}>
+            {heroBadge}
+            <h1 style={hf} className={`mt-6 text-3xl leading-[1.1] md:text-5xl ${h1}`}>
               {modelo.heroTitulo}
             </h1>
             <p className={`mt-5 max-w-xl text-base md:text-lg ${textMuted}`}>{modelo.heroSub}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="h-13 rounded-xl bg-[hsl(var(--dp))] px-7 font-bold text-white shadow-lg transition-transform hover:scale-[1.02] hover:bg-[hsl(var(--dp))]/90"
-              >
-                <a href={orcamento} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle size={18} className="mr-2" />
-                  Falar no WhatsApp
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className={`h-13 rounded-xl px-7 ${border} ${textMuted} transition-colors hover:text-[hsl(var(--dp))]`}
-              >
-                <a href="#servicos">Ver serviços</a>
-              </Button>
-            </div>
-            <div className={`mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm ${textMuted}`}>
-              <span className="flex items-center gap-2">
-                <Clock size={15} className="text-[hsl(var(--da))]" /> Atendimento rápido
-              </span>
-              <span className="flex items-center gap-2">
-                <Check size={15} className="text-[hsl(var(--da))]" /> Profissionais qualificados
-              </span>
-              <span className="flex items-center gap-2">
-                <MapPin size={15} className="text-[hsl(var(--da))]" />{" "}
-                {modelo.endereco.split("—")[1]?.trim() || "Centro"}
-              </span>
-            </div>
+            {heroBotoes()}
+            {heroSelos()}
           </motion.div>
 
           <motion.div
@@ -184,36 +289,115 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="relative"
           >
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="aspect-[4/3] w-full rounded-3xl border border-[hsl(var(--dp))]/30 shadow-2xl"
-              style={{ background: `linear-gradient(135deg, hsl(var(--dp) / 0.85), hsl(var(--da) / 0.7))` }}
-            >
-              <div className="flex h-full flex-col justify-end p-7">
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-                  {modelo.tagline}
-                </span>
-                <p className={`mt-2 text-2xl font-extrabold text-white md:text-3xl ${heading}`}>
-                  {modelo.empresa}
-                </p>
-              </div>
-            </motion.div>
+            <img
+              src={img(0)}
+              alt={modelo.empresa}
+              className={`aspect-[4/3] w-full ${r} object-cover shadow-2xl`}
+            />
+            <img
+              src={img(1)}
+              alt=""
+              className={`absolute -bottom-8 -left-4 hidden h-40 w-40 ${r} border-4 border-[hsl(var(--dp))] object-cover shadow-2xl md:block`}
+            />
             <div
-              className={`mt-5 inline-block rounded-2xl border ${border} ${dark ? "bg-[hsl(220_18%_10%)]" : "bg-white"} px-5 py-4 shadow-xl`}
+              className={`mt-6 inline-block ${r} border ${border} ${dark ? "bg-[hsl(220_18%_10%)]" : "bg-white"} px-5 py-4 shadow-xl md:ml-40`}
             >
               <AnimatedCounter
-                to={1500}
-                prefix="+"
+                to={tema.numeros[0].to}
+                prefix={tema.numeros[0].prefix}
+                suffix={tema.numeros[0].suffix}
                 className="text-2xl font-extrabold text-[hsl(var(--dp))]"
               />
-              <p className={`text-xs ${textMuted}`}>clientes atendidos</p>
+              <p className={`text-xs ${textMuted}`}>{tema.numeros[0].label.toLowerCase()}</p>
             </div>
           </motion.div>
         </div>
       </section>
+    );
+  };
 
-      {/* SOBRE + MISSÃO / VISÃO / VALORES */}
+  return (
+    <div
+      className={`${surface} ${text}`}
+      style={
+        {
+          "--dp": modelo.primary,
+          "--da": modelo.accent,
+          fontFamily: tema.fontTexto,
+        } as React.CSSProperties
+      }
+    >
+      {/* HEADER */}
+      <header
+        className={`sticky ${contained ? "top-0" : "top-24 lg:top-[104px]"} z-40 border-b ${border} ${
+          dark ? "bg-[hsl(220_18%_9%/0.85)]" : "bg-[hsl(0_0%_100%/0.92)]"
+        } backdrop-blur-md`}
+      >
+        <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
+          <a href="#top" className="flex items-center gap-2.5">
+            <span className={`flex h-9 w-9 items-center justify-center ${r} bg-[hsl(var(--dp))]`}>
+              <modelo.icon size={18} className="text-white" />
+            </span>
+            <span className="leading-tight">
+              <span style={hf} className="block text-sm font-extrabold">
+                {modelo.empresa}
+              </span>
+              <span className={`block text-[10px] uppercase tracking-widest ${textMuted}`}>
+                {modelo.tagline}
+              </span>
+            </span>
+          </a>
+          <nav className="hidden items-center gap-6 xl:flex">
+            {nav.map((n) => (
+              <a
+                key={n.label}
+                href={n.href}
+                className={`text-sm font-medium ${textMuted} transition-colors hover:text-[hsl(var(--dp))]`}
+              >
+                {n.label}
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-2">
+            <Button
+              asChild
+              size="sm"
+              className={`hidden shrink-0 ${r} bg-[hsl(var(--dp))] text-white transition-transform hover:scale-[1.03] hover:bg-[hsl(var(--dp))]/90 sm:inline-flex`}
+            >
+              <a href={orcamento} target="_blank" rel="noopener noreferrer">
+                <Phone size={14} className="mr-1.5" />
+                {tema.ctaLabel}
+              </a>
+            </Button>
+            <button
+              onClick={() => setMenu((m) => !m)}
+              aria-label="Abrir menu"
+              aria-expanded={menu}
+              className={`flex h-10 w-10 items-center justify-center ${r} border ${border} xl:hidden`}
+            >
+              {menu ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
+        </div>
+        {menu && (
+          <nav className={`border-t ${border} px-4 py-3 xl:hidden`}>
+            {nav.map((n) => (
+              <a
+                key={n.label}
+                href={n.href}
+                onClick={() => setMenu(false)}
+                className={`block py-2 text-sm font-medium ${textMuted}`}
+              >
+                {n.label}
+              </a>
+            ))}
+          </nav>
+        )}
+      </header>
+
+      {renderHero()}
+
+      {/* SOBRE */}
       <section id="sobre" className={`py-16 md:py-24 ${surfaceAlt}`}>
         <div className="container mx-auto px-4">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
@@ -221,18 +405,24 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--dp))]">
                 Sobre nós
               </span>
-              <h2 className={`mt-3 text-3xl font-bold md:text-4xl ${heading}`}>
+              <h2 style={hf} className={`mt-3 text-3xl md:text-4xl ${h1}`}>
                 Quem é a {modelo.empresa}
               </h2>
               <p className={`mt-5 text-base leading-relaxed ${textMuted}`}>{modelo.sobre}</p>
               <div className="mt-8 space-y-4">
                 {[
-                  { icon: Target, t: "Missão", d: `Entregar ${modelo.categoria.toLowerCase()} de excelência, com atendimento humano e resultados reais.` },
+                  {
+                    icon: Target,
+                    t: "Missão",
+                    d: `Entregar ${modelo.categoria.toLowerCase()} de excelência, com atendimento humano e resultados reais.`,
+                  },
                   { icon: Eye, t: "Visão", d: "Ser referência regional pela qualidade, ética e compromisso com cada cliente." },
                   { icon: Heart, t: "Valores", d: "Transparência, respeito, responsabilidade e melhoria contínua." },
                 ].map((v) => (
-                  <div key={v.t} className={`flex gap-4 rounded-2xl border ${border} ${cardBg} p-4`}>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[hsl(var(--dp))]/12 text-[hsl(var(--dp))]">
+                  <div key={v.t} className={`flex gap-4 ${r} border ${border} ${cardBg} p-4`}>
+                    <span
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center ${r} bg-[hsl(var(--dp))]/12 text-[hsl(var(--dp))]`}
+                    >
                       <v.icon size={18} />
                     </span>
                     <div>
@@ -244,13 +434,15 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
               </div>
             </motion.div>
             <motion.div {...fadeUp} className="grid grid-cols-2 gap-4">
-              {[0, 1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="aspect-square rounded-2xl transition-transform duration-500 hover:scale-[1.03]"
-                  style={{
-                    background: `linear-gradient(${140 + i * 40}deg, hsl(var(--dp) / ${0.75 - i * 0.12}), hsl(var(--da) / ${0.55 - i * 0.1}))`,
-                  }}
+              {[1, 2, 3, 4].map((n, i) => (
+                <img
+                  key={n}
+                  src={img(n)}
+                  alt={`Estrutura ${modelo.empresa} ${i + 1}`}
+                  loading="lazy"
+                  className={`aspect-square w-full ${r} object-cover transition-transform duration-500 hover:scale-[1.03] ${
+                    i % 3 === 0 ? "sm:mt-6" : ""
+                  }`}
                 />
               ))}
             </motion.div>
@@ -262,41 +454,50 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
       <section id="servicos" className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--dp))]">
-              Serviços
-            </span>
-            <h2 className={`mt-3 text-3xl font-bold md:text-4xl ${heading}`}>O que fazemos por você</h2>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--dp))]">Serviços</span>
+            <h2 style={hf} className={`mt-3 text-3xl md:text-4xl ${h1}`}>
+              O que fazemos por você
+            </h2>
             <p className={`mt-4 ${textMuted}`}>
               Soluções completas com atendimento próximo e transparência total.
             </p>
           </motion.div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {modelo.servicos.map((s, i) => (
-              <motion.article
-                key={s.titulo}
-                {...fadeUp}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`group rounded-3xl border ${border} ${cardBg} p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[hsl(var(--dp))]/50 hover:shadow-xl`}
-              >
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[hsl(var(--dp))]/12 text-[hsl(var(--dp))] transition-transform duration-300 group-hover:scale-110">
-                  <modelo.icon size={20} />
-                </span>
-                <h3 className="mt-5 text-lg font-semibold">{s.titulo}</h3>
-                <p className={`mt-2 text-sm ${textMuted}`}>{s.texto}</p>
-              </motion.article>
-            ))}
+            {modelo.servicos.map((s, i) => {
+              const Icon = servicoIcons[i % servicoIcons.length];
+              return (
+                <motion.article
+                  key={s.titulo}
+                  {...fadeUp}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className={`group ${r} border ${border} ${cardBg} p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[hsl(var(--dp))]/50 hover:shadow-xl`}
+                >
+                  <span
+                    className={`flex h-11 w-11 items-center justify-center ${r} bg-[hsl(var(--dp))]/12 text-[hsl(var(--dp))] transition-transform duration-300 group-hover:scale-110`}
+                  >
+                    <Icon size={20} />
+                  </span>
+                  <h3 style={hf} className="mt-5 text-lg font-semibold">
+                    {s.titulo}
+                  </h3>
+                  <p className={`mt-2 text-sm ${textMuted}`}>{s.texto}</p>
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* GALERIA + LIGHTBOX */}
+      {/* PORTFÓLIO / GALERIA */}
       <section id="galeria" className={`py-16 md:py-24 ${surfaceAlt}`}>
         <div className="container mx-auto px-4">
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--dp))]">
-              Galeria
+              {tema.portfolioLabel}
             </span>
-            <h2 className={`mt-3 text-3xl font-bold md:text-4xl ${heading}`}>Nosso trabalho de perto</h2>
+            <h2 style={hf} className={`mt-3 text-3xl md:text-4xl ${h1}`}>
+              Nosso trabalho de perto
+            </h2>
           </motion.div>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {modelo.galeria.map((g, i) => (
@@ -306,25 +507,35 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
                 transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
                 onClick={() => setLightbox(i)}
                 aria-label={`Ampliar imagem: ${g}`}
-                className="group relative block overflow-hidden rounded-3xl text-left"
+                className={`group relative block overflow-hidden ${r} text-left ${
+                  i % 5 === 0 ? "lg:row-span-2" : ""
+                }`}
               >
-                <div
-                  className="aspect-[4/3] w-full transition-transform duration-500 group-hover:scale-105"
-                  style={{
-                    background: `linear-gradient(${120 + i * 35}deg, hsl(var(--dp) / ${0.85 - i * 0.07}), hsl(var(--da) / ${0.6 - i * 0.05}))`,
-                  }}
+                <img
+                  src={img(i)}
+                  alt={g}
+                  loading="lazy"
+                  className={`w-full object-cover transition-transform duration-500 group-hover:scale-105 ${
+                    i % 5 === 0 ? "h-full min-h-[220px] lg:min-h-[460px]" : "aspect-[4/3]"
+                  }`}
                 />
                 <span className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white opacity-0 transition-opacity group-hover:opacity-100">
                   <Expand size={16} />
                 </span>
-                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 text-sm font-medium text-white">
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-4 text-sm font-medium text-white">
                   {g}
                 </span>
               </motion.button>
             ))}
           </div>
         </div>
-        <Lightbox itens={modelo.galeria} index={lightbox} onClose={() => setLightbox(null)} onChange={setLightbox} />
+        <Lightbox
+          itens={modelo.galeria}
+          imagens={modelo.galeria.map((_, i) => img(i))}
+          index={lightbox}
+          onClose={() => setLightbox(null)}
+          onChange={setLightbox}
+        />
       </section>
 
       {/* DIFERENCIAIS */}
@@ -334,7 +545,9 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--dp))]">
               Diferenciais
             </span>
-            <h2 className={`mt-3 text-3xl font-bold md:text-4xl ${heading}`}>Por que nos escolher</h2>
+            <h2 style={hf} className={`mt-3 text-3xl md:text-4xl ${h1}`}>
+              Por que nos escolher
+            </h2>
           </motion.div>
           <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
             {modelo.diferenciais.map((d, i) => (
@@ -342,9 +555,9 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
                 key={d}
                 {...fadeUp}
                 transition={{ duration: 0.45, delay: (i % 2) * 0.08 }}
-                className={`flex items-center gap-3 rounded-2xl border ${border} ${cardBg} p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--dp))]/50 hover:shadow-lg`}
+                className={`flex items-center gap-3 ${r} border ${border} ${cardBg} p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--dp))]/50 hover:shadow-lg`}
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[hsl(var(--dp))]">
+                <span className={`flex h-9 w-9 shrink-0 items-center justify-center ${r} bg-[hsl(var(--dp))]`}>
                   <Check size={16} className="text-white" />
                 </span>
                 <p className="text-sm font-medium">{d}</p>
@@ -355,17 +568,19 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
       </section>
 
       {/* NÚMEROS */}
-      <section
-        className="py-14 md:py-20"
-        style={{ background: `linear-gradient(120deg, hsl(var(--dp) / 0.92), hsl(var(--da) / 0.85))` }}
-      >
-        <div className="container mx-auto grid grid-cols-2 gap-6 px-4 md:grid-cols-4">
-          {numeros.map((n, i) => (
+      <section className="relative overflow-hidden py-14 md:py-20">
+        <img src={img(5)} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+        <div
+          className="absolute inset-0"
+          style={{ background: `linear-gradient(120deg, hsl(var(--dp) / 0.93), hsl(var(--da) / 0.86))` }}
+        />
+        <div className="container relative z-10 mx-auto grid grid-cols-2 gap-6 px-4 md:grid-cols-4">
+          {tema.numeros.map((n, i) => (
             <motion.div
               key={n.label}
               {...fadeUp}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="rounded-2xl border border-white/20 bg-white/10 p-5 text-center backdrop-blur-sm"
+              className={`${r} border border-white/20 bg-white/10 p-5 text-center backdrop-blur-sm`}
             >
               <AnimatedCounter
                 to={n.to}
@@ -373,20 +588,22 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
                 suffix={n.suffix}
                 className="block text-3xl font-extrabold text-white md:text-4xl"
               />
-              <p className="mt-1 text-xs font-medium text-white/80 md:text-sm">{n.label}</p>
+              <p className="mt-1 text-xs font-medium text-white/85 md:text-sm">{n.label}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* DEPOIMENTOS — SLIDER */}
+      {/* DEPOIMENTOS */}
       <section id="depoimentos" className={`py-16 md:py-24 ${surfaceAlt}`}>
         <div className="container mx-auto px-4">
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--dp))]">
               Depoimentos
             </span>
-            <h2 className={`mt-3 text-3xl font-bold md:text-4xl ${heading}`}>O que dizem sobre nós</h2>
+            <h2 style={hf} className={`mt-3 text-3xl md:text-4xl ${h1}`}>
+              O que dizem sobre nós
+            </h2>
           </motion.div>
 
           <div className="relative mx-auto mt-12 max-w-2xl">
@@ -395,14 +612,17 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
-              className={`rounded-3xl border ${border} ${cardBg} p-7 md:p-10`}
+              className={`${r} border ${border} ${cardBg} p-7 md:p-10`}
             >
               <Quote size={30} className="text-[hsl(var(--da))]" />
               <p className={`mt-4 text-base leading-relaxed md:text-lg ${textMuted}`}>“{depoimento.texto}”</p>
               <div className="mt-6 flex items-center gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[hsl(var(--dp))] text-sm font-bold text-white">
-                  {depoimento.nome.charAt(0)}
-                </span>
+                <img
+                  src={`https://i.pravatar.cc/96?img=${((modelo.numero + dep * 7) % 70) + 1}`}
+                  alt={depoimento.nome}
+                  loading="lazy"
+                  className="h-11 w-11 rounded-full object-cover"
+                />
                 <span>
                   <span className="block text-sm font-semibold">{depoimento.nome}</span>
                   <span className={`block text-xs ${textMuted}`}>{depoimento.papel}</span>
@@ -447,12 +667,36 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
         </div>
       </section>
 
+      {/* PARCEIROS */}
+      <section id="blog" className="py-14 md:py-16">
+        <div className="container mx-auto px-4">
+          <p className={`text-center text-xs font-bold uppercase tracking-[0.24em] ${textMuted}`}>
+            Parceiros e certificações
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            {tema.parceiros.map((p, i) => (
+              <motion.span
+                key={p}
+                {...fadeUp}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                style={hf}
+                className={`${r} border ${border} ${cardBg} px-6 py-3 text-sm font-bold uppercase tracking-wider ${textMuted} transition-colors hover:border-[hsl(var(--dp))] hover:text-[hsl(var(--dp))]`}
+              >
+                {p}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
-      <section id="faq" className="py-16 md:py-24">
+      <section id="faq" className={`py-16 md:py-24 ${surfaceAlt}`}>
         <div className="container mx-auto max-w-3xl px-4">
           <motion.div {...fadeUp} className="text-center">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--dp))]">FAQ</span>
-            <h2 className={`mt-3 text-3xl font-bold md:text-4xl ${heading}`}>Perguntas frequentes</h2>
+            <h2 style={hf} className={`mt-3 text-3xl md:text-4xl ${h1}`}>
+              Perguntas frequentes
+            </h2>
           </motion.div>
           <motion.div {...fadeUp} className="mt-10">
             <Accordion type="single" collapsible className="w-full">
@@ -468,43 +712,31 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
       </section>
 
       {/* MAPA + FORMULÁRIO */}
-      <section id="contato" className={`py-16 md:py-24 ${surfaceAlt}`}>
+      <section id="contato" className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--dp))]">
-              Contato
-            </span>
-            <h2 className={`mt-3 text-3xl font-bold md:text-4xl ${heading}`}>Fale com a gente</h2>
-            <p className={`mt-4 ${textMuted}`}>
-              Envie sua mensagem ou chame no WhatsApp. Respondemos rapidinho.
-            </p>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(var(--dp))]">Contato</span>
+            <h2 style={hf} className={`mt-3 text-3xl md:text-4xl ${h1}`}>
+              Fale com a gente
+            </h2>
+            <p className={`mt-4 ${textMuted}`}>Envie sua mensagem ou chame no WhatsApp. Respondemos rapidinho.</p>
           </motion.div>
 
           <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            <motion.div {...fadeUp} className={`overflow-hidden rounded-3xl border ${border} ${cardBg}`}>
-              <div
-                className="relative flex h-64 items-center justify-center md:h-full md:min-h-[340px]"
-                role="img"
-                aria-label="Mapa de localização (demonstração)"
-                style={{
-                  background: `repeating-linear-gradient(0deg, hsl(var(--dp) / 0.12) 0 1px, transparent 1px 34px), repeating-linear-gradient(90deg, hsl(var(--dp) / 0.12) 0 1px, transparent 1px 34px), linear-gradient(135deg, hsl(var(--dp) / 0.2), hsl(var(--da) / 0.14))`,
-                }}
-              >
-                <div className={`rounded-2xl border ${border} ${cardBg} px-5 py-4 text-center shadow-lg`}>
-                  <MapPin className="mx-auto text-[hsl(var(--dp))]" size={22} />
-                  <p className="mt-2 text-sm font-semibold">{modelo.empresa}</p>
-                  <p className={`mt-1 text-xs ${textMuted}`}>{modelo.endereco}</p>
-                  <p className={`mt-2 text-[10px] uppercase tracking-widest ${textMuted}`}>
-                    Google Maps (placeholder)
-                  </p>
-                </div>
-              </div>
+            <motion.div {...fadeUp} className={`overflow-hidden ${r} border ${border} ${cardBg}`}>
+              <iframe
+                title={`Localização ${modelo.empresa}`}
+                src={mapa}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-72 w-full border-0 md:h-full md:min-h-[380px]"
+              />
             </motion.div>
 
             <motion.form
               {...fadeUp}
               onSubmit={(e) => e.preventDefault()}
-              className={`rounded-3xl border ${border} ${cardBg} p-6 md:p-8`}
+              className={`${r} border ${border} ${cardBg} p-6 md:p-8`}
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
@@ -534,10 +766,10 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
               </div>
               <Button
                 type="submit"
-                className="mt-6 h-12 w-full rounded-xl bg-[hsl(var(--dp))] font-bold text-white transition-transform hover:scale-[1.01] hover:bg-[hsl(var(--dp))]/90"
+                className={`mt-6 h-12 w-full ${r} bg-[hsl(var(--dp))] font-bold text-white transition-transform hover:scale-[1.01] hover:bg-[hsl(var(--dp))]/90`}
               >
                 <Send size={16} className="mr-2" />
-                Solicitar Orçamento
+                {tema.ctaLabel}
               </Button>
               <p className={`mt-3 text-center text-[11px] ${textMuted}`}>
                 Formulário de demonstração — no seu site ele envia direto para o seu e-mail.
@@ -548,14 +780,16 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
       </section>
 
       {/* RODAPÉ */}
-      <footer className={`border-t ${border} py-14`}>
+      <footer className={`border-t ${border} ${surfaceAlt} py-14`}>
         <div className="container mx-auto grid gap-10 px-4 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[hsl(var(--dp))]">
+              <span className={`flex h-9 w-9 items-center justify-center ${r} bg-[hsl(var(--dp))]`}>
                 <modelo.icon size={18} className="text-white" />
               </span>
-              <span className={`text-base font-extrabold ${heading}`}>{modelo.empresa}</span>
+              <span style={hf} className="text-base font-extrabold">
+                {modelo.empresa}
+              </span>
             </div>
             <p className={`mt-4 max-w-sm text-sm ${textMuted}`}>{modelo.sobre}</p>
             <div className="mt-5 flex gap-3">
@@ -570,7 +804,7 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className={`flex h-10 w-10 items-center justify-center rounded-xl border ${border} ${cardBg} transition-colors hover:border-[hsl(var(--dp))] hover:text-[hsl(var(--dp))]`}
+                  className={`flex h-10 w-10 items-center justify-center ${r} border ${border} ${cardBg} transition-colors hover:border-[hsl(var(--dp))] hover:text-[hsl(var(--dp))]`}
                 >
                   <s.icon size={17} />
                 </a>
@@ -581,7 +815,7 @@ const DemoSite = ({ modelo, contained = false }: Props) => {
             <p className="text-sm font-semibold">Links rápidos</p>
             <ul className="mt-4 space-y-2">
               {nav.map((n) => (
-                <li key={n.href}>
+                <li key={n.label}>
                   <a href={n.href} className={`text-sm ${textMuted} hover:text-[hsl(var(--dp))]`}>
                     {n.label}
                   </a>
