@@ -3,13 +3,14 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 type Props = {
   itens: string[];
+  imagens?: string[];
   index: number | null;
   onClose: () => void;
   onChange: (i: number) => void;
 };
 
-/** Lightbox simples para a galeria das demonstrações. */
-const Lightbox = ({ itens, index, onClose, onChange }: Props) => {
+/** Lightbox para a galeria/portfólio das demonstrações. */
+const Lightbox = ({ itens, imagens, index, onClose, onChange }: Props) => {
   useEffect(() => {
     if (index === null) return;
     const onKey = (e: KeyboardEvent) => {
@@ -22,10 +23,11 @@ const Lightbox = ({ itens, index, onClose, onChange }: Props) => {
   }, [index, itens.length, onChange, onClose]);
 
   if (index === null) return null;
+  const src = imagens?.[index % (imagens.length || 1)];
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex animate-fade-in items-center justify-center bg-black/90 p-4"
+      className="fixed inset-0 z-[80] flex animate-fade-in items-center justify-center bg-black/92 p-4"
       role="dialog"
       aria-modal="true"
       aria-label={`Galeria: ${itens[index]}`}
@@ -50,13 +52,22 @@ const Lightbox = ({ itens, index, onClose, onChange }: Props) => {
         <ChevronLeft size={22} />
       </button>
 
-      <figure className="w-full max-w-3xl animate-scale-in" onClick={(e) => e.stopPropagation()}>
-        <div
-          className="aspect-[16/10] w-full rounded-2xl border border-white/15 shadow-2xl"
-          style={{
-            background: `linear-gradient(${120 + index * 35}deg, hsl(var(--dp) / 0.9), hsl(var(--da) / 0.65))`,
-          }}
-        />
+      <figure className="w-full max-w-4xl animate-scale-in" onClick={(e) => e.stopPropagation()}>
+        {src ? (
+          <img
+            src={src}
+            alt={itens[index]}
+            loading="lazy"
+            className="max-h-[76vh] w-full rounded-2xl border border-white/15 object-cover shadow-2xl"
+          />
+        ) : (
+          <div
+            className="aspect-[16/10] w-full rounded-2xl border border-white/15 shadow-2xl"
+            style={{
+              background: `linear-gradient(${120 + index * 35}deg, hsl(var(--dp) / 0.9), hsl(var(--da) / 0.65))`,
+            }}
+          />
+        )}
         <figcaption className="mt-4 text-center text-sm text-white/80">
           {itens[index]} — {index + 1}/{itens.length}
         </figcaption>
