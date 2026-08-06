@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, MessageCircle, Sparkles, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ModelMockup from "@/components/ModelMockup";
+import ModelCover from "@/components/ModelCover";
 import { modelos } from "@/data/modelos";
 
 const WHATSAPP_BASE = "https://wa.me/5546999350070?text=";
@@ -156,7 +156,7 @@ const ModelosPremium = () => {
               >
                 <div className="overflow-hidden rounded-2xl">
                   <div className="transition-transform duration-500 group-hover:scale-[1.04]">
-                    <ModelMockup index={i} name={m.nome} />
+                    <ModelCover modelo={m} />
                   </div>
                 </div>
 
