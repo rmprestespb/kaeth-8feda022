@@ -1,0 +1,18 @@
+{
+  "name": "Agência Kaeth",
+  "short_name": "Kaeth",
+  "description": "Sites por assinatura, logos e identidade visual.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0B0F",
+  "theme_color": "#0B0B0F",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "https://storage.googleapis.com/gpt-engineer-file-uploads/yYaqY8Rxh7aEQmwSsjWkquAsCsE2/uploads/1767852625515-k%20da%20logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
