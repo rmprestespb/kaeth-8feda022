@@ -1,73 +1,56 @@
-# Welcome to your Lovable project
+# Agência Kaeth
 
-## Project info
+Aja como um Desenvolvedor Front-End Sênior e Especialista em UX/UI.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Crie o código completo (arquivo único HTML contendo CSS e JS) para o site de uma Agência Digital chamada "Nome da Sua Agência" focada em Criação de Logos e Desenvolvimento de Sites.
 
-## How can I edit this code?
+**Estilo Visual:**
+- Tema: Dark Mode (fundo escuro elegante).
+- Cores de destaque: Roxo neon e Azul ciano (gradientes).
+- Fonte: Uma fonte sans-serif moderna (como Inter ou Poppins do Google Fonts).
+- Layout: Moderno, minimalista, com bastante espaço em branco (respiro) e responsivo para celular.
 
-There are several ways of editing your application.
+**Tecnologias:**
+- HTML5 semântico.
+- Tailwind CSS (importado via CDN) para estilização rápida e bonita.
+- FontAwesome (via CDN) para ícones.
+- JavaScript simples para o menu mobile e animações suaves ao rolar a página (scroll reveal).
 
-**Use Lovable**
+**Estrutura de Conteúdo:**
+1. **Navbar:** Logo (texto estilizado), Links (Serviços, Portfólio, Processo, Contato) e botão de "Orçamento".
+2. **Hero Section:** Título grande "Transformamos sua ideia em uma Marca Digital". Subtítulo sobre identidade visual e web design. Botão CTA "Iniciar Projeto".
+3. **Serviços (Grid de 3 Cards):**
+   - Criação de Logos (Ícone de design, texto sobre branding).
+   - Criação de Sites (Ícone de código, texto sobre sites rápidos e SEO).
+   - Identidade Visual (Papelaria, cartões, redes sociais).
+4. **Portfólio:** Uma galeria grid com 4 a 6 imagens de placeholder (use https://placehold.co/600x400/1a1a1a/FFF) simulando projetos anteriores.
+5. **Por que nós?** 3 diferenciais (Ex: Design Exclusivo, Entrega Rápida, Suporte).
+6. **Footer:** Links rápidos, contato e Copyright.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+**Instruções Extras:**
+- Use placeholders para as imagens.
+- Adicione um efeito de "hover" (passar o mouse) nos cartões de serviço e botões para dar interatividade.
+- O código deve estar pronto para copiar, salvar como .html e abrir no navegador.
 
-Changes made via Lovable will be committed automatically to this repo.
+This project was built with [Lovable](https://lovable.dev).
 
-**Use your preferred IDE**
+**Live app**: https://kaeth.lovable.app
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Build with Lovable
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/f85f12b6-bc60-4eb1-9de0-867e008671a8).
 
-Follow these steps:
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
