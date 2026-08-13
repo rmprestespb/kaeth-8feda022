@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Lock, Mail, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,10 @@ const AdminLogin = () => {
   const { signIn } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const nextParam = searchParams.get("next");
+  const safeNext =
+    nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//") ? nextParam : null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,9 +40,13 @@ const AdminLogin = () => {
 
     toast({
       title: "Login realizado!",
-      description: "Redirecionando para o painel...",
+      description: safeNext ? "Redirecionando..." : "Redirecionando para o painel...",
     });
 
+    if (safeNext) {
+      window.location.href = safeNext;
+      return;
+    }
     navigate("/admin");
   };
 

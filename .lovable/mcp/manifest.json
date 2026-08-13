@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.2",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://cczzhkxomtwgovwdvstf.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "agencia-kaeth",
+      "version": "0.1.0",
+      "title": "Agência Kaeth"
+    },
+    "tools": [
+      {
+        "name": "list_contacts",
+        "title": "Listar mensagens de contato",
+        "description": "Lista as mensagens recebidas pelo formulário de contato do site (requer conta de administrador).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "description": "Quantidade máxima de mensagens."
+            },
+            "search": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Filtro por nome ou e-mail."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_portfolio_projects",
+        "title": "Listar projetos do portfólio",
+        "description": "Lista os projetos do portfólio do site, opcionalmente filtrados por categoria.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Slug da categoria (ex.: criativos)."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50,
+              "description": "Quantidade máxima de projetos."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "create_portfolio_project",
+        "title": "Criar projeto no portfólio",
+        "description": "Cria um novo projeto no portfólio do site (requer conta de administrador). A imagem deve ser uma URL pública.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Título do projeto."
+            },
+            "category": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Slug da categoria (ex.: criativos)."
+            },
+            "category_label": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Nome exibido da categoria."
+            },
+            "image_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL pública da imagem de capa."
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Descrição do projeto."
+            },
+            "price": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Preço exibido (texto livre)."
+            },
+            "sort_order": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Ordem de exibição."
+            }
+          },
+          "required": [
+            "title",
+            "category",
+            "category_label",
+            "image_url"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "update_portfolio_project",
+        "title": "Atualizar projeto do portfólio",
+        "description": "Atualiza campos de um projeto existente do portfólio, como título, preço, descrição ou imagem (requer conta de administrador).",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "ID do projeto a atualizar."
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "category": {
+              "type": "string",
+              "minLength": 1
+            },
+            "category_label": {
+              "type": "string",
+              "minLength": 1
+            },
+            "image_url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": {
+              "type": "string"
+            },
+            "price": {
+              "type": "string"
+            },
+            "sort_order": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
