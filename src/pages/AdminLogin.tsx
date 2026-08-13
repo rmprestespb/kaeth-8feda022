@@ -40,9 +40,13 @@ const AdminLogin = () => {
 
     toast({
       title: "Login realizado!",
-      description: "Redirecionando para o painel...",
+      description: safeNext ? "Redirecionando..." : "Redirecionando para o painel...",
     });
 
+    if (safeNext) {
+      window.location.href = safeNext;
+      return;
+    }
     navigate("/admin");
   };
 
