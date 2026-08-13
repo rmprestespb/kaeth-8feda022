@@ -17,6 +17,7 @@ import ResetPassword from "./pages/ResetPassword";
 
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminPortfolio from "./pages/AdminPortfolio";
+import OAuthConsent from "./pages/OAuthConsent";
 
 const queryClient = new QueryClient();
 
