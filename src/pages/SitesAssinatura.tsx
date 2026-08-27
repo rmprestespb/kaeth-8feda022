@@ -18,6 +18,7 @@ import {
   Type,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Navbar from "@/components/Navbar";
 import RoboVendedorBanner from "@/components/RoboVendedorBanner";
 
 const WHATSAPP_URL =
@@ -110,6 +111,7 @@ const adicionais = [
 const SitesAssinatura = () => {
   return (
     <div className="min-h-screen text-foreground" style={{ background: "#05070A" }}>
+      <Navbar />
       {/* ROBÔ VENDEDOR — banner animado */}
       <RoboVendedorBanner whatsappUrl={WHATSAPP_URL} />
 
