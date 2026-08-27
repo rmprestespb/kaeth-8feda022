@@ -21,6 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SiteMockMosaic from "@/components/SiteMockMosaic";
+import RoboVendedorBanner from "@/components/RoboVendedorBanner";
 
 const WHATSAPP_URL =
   "https://wa.me/5546999350070?text=" +
@@ -165,6 +166,9 @@ const SitesAssinatura = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* ROBÔ VENDEDOR — banner animado */}
+      <RoboVendedorBanner whatsappUrl={WHATSAPP_URL} />
 
       {/* DIFERENCIAL — CARD VITRINE */}
       <section className="py-16 md:py-24 relative">
