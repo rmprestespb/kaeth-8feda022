@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import {
-  ArrowRight,
   Check,
   Layout,
   Image as ImageIcon,
@@ -19,18 +18,17 @@ import {
   Type,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import SiteMockMosaic from "@/components/SiteMockMosaic";
 import RoboVendedorBanner from "@/components/RoboVendedorBanner";
 
 const WHATSAPP_URL =
   "https://wa.me/5546999350070?text=" +
   encodeURIComponent("Olá! Quero o plano de R$ 99,90");
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0 },
-};
+const NEON_BORDER = "1px solid rgba(46,155,255,.22)";
+const NEON_BORDER_SOFT = "1px solid rgba(46,155,255,.14)";
+const NEON_GLOW = "0 0 40px rgba(46,155,255,.08), 0 0 60px rgba(255,176,32,.06)";
+const CARD_BG = "rgba(20,32,46,.55)";
+const CARD_BG_SOFT = "rgba(255,255,255,.04)";
 
 const diferenciais = [
   {
@@ -111,62 +109,7 @@ const adicionais = [
 
 const SitesAssinatura = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* HERO */}
-      <section className="relative overflow-hidden burgundy-bg pt-28 pb-24 md:pt-36 md:pb-32">
-        <SiteMockMosaic />
-
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] md:text-xs font-semibold tracking-[0.18em] border border-gold/50 text-gold bg-foreground/5 backdrop-blur-md">
-              <Sparkles size={13} />
-              AGÊNCIA KAETH • SITES POR ASSINATURA
-            </span>
-
-            <h1 className="mt-7 text-4xl md:text-6xl font-extrabold leading-[1.08] text-foreground">
-              Seu Site Profissional e Exclusivo
-            </h1>
-
-            <p className="mt-5 text-4xl md:text-6xl font-extrabold gradient-gold-text glow-gold-text">
-              R$ 99,90/mês
-            </p>
-
-            <p className="mt-6 text-base md:text-xl text-foreground/70 max-w-2xl mx-auto">
-              Sem custos altos de criação. Presença digital moderna, otimizada e
-              única para destacar sua marca no mercado.
-            </p>
-
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="gradient-gold-bg text-gold-foreground font-bold text-base h-14 px-8 rounded-xl glow-gold hover:opacity-90"
-              >
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2" size={20} />
-                  Quero Meu Site por R$ 99,90
-                  <ArrowRight className="ml-2" size={20} />
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="h-14 px-8 rounded-xl text-base border-gold/40 bg-foreground/5 backdrop-blur-md hover:bg-foreground/10"
-              >
-                <Link to="/modelos">Ver modelos</Link>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
+    <div className="min-h-screen text-foreground" style={{ background: "#05070A" }}>
       {/* ROBÔ VENDEDOR — banner animado */}
       <RoboVendedorBanner whatsappUrl={WHATSAPP_URL} />
 
@@ -178,7 +121,8 @@ const SitesAssinatura = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl border border-gold/30 bg-card/60 backdrop-blur-xl p-8 md:p-12 glow-gold"
+            className="rounded-3xl backdrop-blur-xl p-8 md:p-12"
+            style={{ border: NEON_BORDER, background: CARD_BG, boxShadow: NEON_GLOW }}
           >
             <div className="text-center max-w-2xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold">
@@ -195,7 +139,8 @@ const SitesAssinatura = () => {
               {diferenciais.map((item) => (
                 <div
                   key={item.title}
-                  className="flex gap-4 p-5 rounded-2xl bg-muted/40 border border-border"
+                  className="flex gap-4 p-5 rounded-2xl"
+                  style={{ background: CARD_BG_SOFT, border: NEON_BORDER_SOFT }}
                 >
                   <div className="shrink-0 w-11 h-11 rounded-xl gradient-gold-bg flex items-center justify-center">
                     <item.icon className="text-gold-foreground" size={20} />
@@ -222,7 +167,8 @@ const SitesAssinatura = () => {
                 {logoOptions.map((opt) => (
                   <div
                     key={opt.label}
-                    className="rounded-2xl border border-border bg-background/60 p-5 text-center hover:border-gold/50 transition-colors"
+                    className="rounded-2xl p-5 text-center transition-colors hover:border-gold/50"
+                    style={{ background: "rgba(5,7,10,.5)", border: NEON_BORDER_SOFT }}
                   >
                     <opt.icon className="mx-auto text-gold" size={22} />
                     <p className="mt-3 text-sm font-medium">{opt.label}</p>
@@ -245,7 +191,10 @@ const SitesAssinatura = () => {
       </section>
 
       {/* INCLUSO NA ASSINATURA */}
-      <section className="py-16 md:py-24 bg-muted/20">
+      <section
+        className="py-16 md:py-24"
+        style={{ background: "linear-gradient(180deg, rgba(20,32,46,.35), rgba(5,7,10,0))" }}
+      >
         <div className="container mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold">
@@ -266,7 +215,8 @@ const SitesAssinatura = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="glass-card rounded-2xl p-7"
+                className="rounded-2xl p-7 backdrop-blur-xl"
+                style={{ background: CARD_BG, border: NEON_BORDER_SOFT }}
               >
                 <div className="w-12 h-12 rounded-xl gradient-gold-bg flex items-center justify-center">
                   <item.icon className="text-gold-foreground" size={22} />
@@ -282,7 +232,10 @@ const SitesAssinatura = () => {
             ))}
           </div>
 
-          <div className="mt-10 max-w-4xl mx-auto rounded-3xl border border-gold/30 bg-card/50 p-8">
+          <div
+            className="mt-10 max-w-4xl mx-auto rounded-3xl p-8"
+            style={{ border: "1px solid rgba(255,176,32,.3)", background: CARD_BG }}
+          >
             <p className="text-center font-semibold">
               Escolha <span className="text-gold">1 troca por mês</span> entre:
             </p>
@@ -290,7 +243,8 @@ const SitesAssinatura = () => {
               {trocasMensais.map((t) => (
                 <div
                   key={t.label}
-                  className="rounded-2xl border border-border bg-background/60 p-5 text-center"
+                  className="rounded-2xl p-5 text-center"
+                  style={{ background: "rgba(5,7,10,.45)", border: NEON_BORDER_SOFT }}
                 >
                   <t.icon className="mx-auto text-gold" size={20} />
                   <p className="mt-3 text-sm font-medium">{t.label}</p>
@@ -315,15 +269,20 @@ const SitesAssinatura = () => {
             </p>
           </div>
 
-          <div className="mt-12 max-w-4xl mx-auto rounded-3xl border border-border overflow-hidden">
+          <div
+            className="mt-12 max-w-4xl mx-auto rounded-3xl overflow-hidden"
+            style={{ border: NEON_BORDER_SOFT }}
+          >
             {adicionais.map((item, i) => (
               <div
                 key={item.title}
-                className={`flex flex-col sm:flex-row sm:items-center gap-4 p-6 ${
-                  i % 2 === 0 ? "bg-card/50" : "bg-background"
-                }`}
+                className="flex flex-col sm:flex-row sm:items-center gap-4 p-6"
+                style={{ background: i % 2 === 0 ? CARD_BG : "transparent" }}
               >
-                <div className="shrink-0 w-11 h-11 rounded-xl bg-muted flex items-center justify-center">
+                <div
+                  className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center"
+                  style={{ background: "rgba(255,255,255,.06)" }}
+                >
                   <item.icon className="text-gold" size={20} />
                 </div>
                 <div className="flex-1">
@@ -354,28 +313,37 @@ const SitesAssinatura = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative overflow-hidden rounded-3xl border border-gold/30 burgundy-bg p-10 md:p-14 text-center glow-gold"
+            className="relative overflow-hidden rounded-3xl p-10 md:p-14 text-center"
+            style={{
+              border: "1px solid rgba(255,176,32,.3)",
+              background:
+                "radial-gradient(120% 100% at 50% 0%, #14202E 0%, #0A0E14 55%, #05070A 100%)",
+              boxShadow: NEON_GLOW,
+            }}
           >
-            <h2 className="text-3xl md:text-5xl font-extrabold">
-              Comece hoje por{" "}
-              <span className="gradient-gold-text glow-gold-text">
-                R$ 99,90/mês
-              </span>
-            </h2>
-            <p className="mt-4 text-foreground/70 text-lg max-w-xl mx-auto">
-              Design exclusivo, hospedagem, manutenção e suporte. Fale com a
-              gente agora e tire seu site do papel.
-            </p>
-            <Button
-              asChild
-              size="lg"
-              className="mt-8 gradient-gold-bg text-gold-foreground font-bold text-base h-14 px-10 rounded-xl hover:opacity-90"
-            >
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2" size={20} />
-                Quero Meu Site por R$ 99,90
-              </a>
-            </Button>
+            <div className="absolute -inset-24 robo-grid-bg" aria-hidden="true" />
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-5xl font-extrabold">
+                Comece hoje por{" "}
+                <span className="gradient-gold-text glow-gold-text">
+                  R$ 99,90/mês
+                </span>
+              </h2>
+              <p className="mt-4 text-foreground/70 text-lg max-w-xl mx-auto">
+                Design exclusivo, hospedagem, manutenção e suporte. Fale com a
+                gente agora e tire seu site do papel.
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="mt-8 gradient-gold-bg text-gold-foreground font-bold text-base h-14 px-10 rounded-full hover:opacity-90"
+              >
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2" size={20} />
+                  Quero Meu Site por R$ 99,90
+                </a>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
