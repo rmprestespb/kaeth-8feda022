@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import mascoteTH from "@/assets/mascote-th.png";
 
 const SPARKS = [
@@ -159,18 +160,28 @@ const RoboVendedorBanner = ({ whatsappUrl }: RoboVendedorBannerProps) => {
             vender
           </p>
 
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="robo-cta inline-flex items-center gap-2 font-extrabold text-base md:text-xl px-8 py-4 md:px-10 md:py-5 rounded-full transition-transform hover:-translate-y-0.5 hover:scale-[1.02]"
-            style={{
-              color: "#0A0E14",
-              background: "linear-gradient(100deg, #FFB020, #FFD98A 45%, #FFB020)",
-            }}
-          >
-            Garantir Meu Site Agora
-          </a>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="robo-cta inline-flex items-center justify-center gap-2 font-extrabold text-base md:text-lg h-14 px-8 md:px-10 rounded-full transition-transform hover:-translate-y-0.5 hover:scale-[1.02]"
+              style={{
+                color: "#0A0E14",
+                background: "linear-gradient(100deg, #FFB020, #FFD98A 45%, #FFB020)",
+              }}
+            >
+              Garantir Meu Site Agora
+            </a>
+
+            <Link
+              to="/modelos"
+              className="inline-flex items-center justify-center gap-2 text-base md:text-lg font-semibold h-14 px-8 md:px-10 rounded-full border border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-colors"
+              style={{ color: "#F2F5F8" }}
+            >
+              Ver modelos
+            </Link>
+          </div>
         </div>
       </div>
     </section>
