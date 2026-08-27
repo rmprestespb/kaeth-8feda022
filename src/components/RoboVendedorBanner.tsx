@@ -34,7 +34,7 @@ interface RoboVendedorBannerProps {
 const RoboVendedorBanner = ({ whatsappUrl }: RoboVendedorBannerProps) => {
   return (
     <section
-      className="relative overflow-hidden min-h-screen flex items-center py-20 md:py-28"
+      className="relative overflow-hidden min-h-screen flex items-center pt-24 pb-20 md:pt-28 md:pb-28"
       style={{
         background:
           "radial-gradient(110% 60% at 50% 42%, #14202E 0%, #0A0E14 48%, #05070A 100%)",
