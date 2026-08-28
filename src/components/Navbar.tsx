@@ -27,8 +27,34 @@ const Navbar = () => {
   return <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass-card py-4" : "bg-transparent py-6"}`}>
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="text-2xl font-bold gradient-text shadow-md">
-          KA<span className="text-foreground">​ETH</span>
+        <a href="#" className="flex items-center gap-3">
+          <span
+            className="w-9 h-9 rounded-[11px] flex items-center justify-center text-white font-extrabold text-sm"
+            style={{
+              fontFamily: "'Sora', sans-serif",
+              background:
+                "linear-gradient(140deg, #ffa22b 0%, #ff7a00 45%, #0b1220 46%, #0b1220 100%)",
+              boxShadow:
+                "0 0 0 1px rgba(255,255,255,.12), 0 0 16px rgba(255,140,0,.35)",
+            }}
+          >
+            TH
+          </span>
+          <span className="flex flex-col leading-none">
+            <span className="text-[9px] tracking-[0.4em] uppercase text-muted-foreground">
+              Agência
+            </span>
+            <span
+              className="text-lg font-extrabold tracking-tight bg-clip-text text-transparent mt-1"
+              style={{
+                fontFamily: "'Sora', sans-serif",
+                backgroundImage:
+                  "linear-gradient(96deg, #ffffff 0%, #ffb457 38%, #4da6ff 78%)",
+              }}
+            >
+              KAETH
+            </span>
+          </span>
         </a>
 
         {/* Desktop Nav */}
