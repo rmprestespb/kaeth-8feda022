@@ -1,88 +1,171 @@
-import { ArrowRight, Sparkles } from "lucide-react";
-import mascoteFogo from "@/assets/mascote-fogo.png";
+import mascoteHero from "@/assets/mascote-homepage.png";
+
+const SORA = { fontFamily: "'Sora', system-ui, sans-serif" };
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden pt-20">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-[128px] animate-float" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/20 rounded-full blur-[128px] animate-float" style={{ animationDelay: "-3s" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-[100px]" />
-      </div>
-
-      {/* Grid Pattern */}
+    <section
+      id="inicio"
+      className="relative min-h-screen flex items-center overflow-hidden px-5 sm:px-8 pt-24 pb-10"
+      style={{
+        background:
+          "radial-gradient(120% 90% at 50% 0%, #101828 0%, #06070a 55%, #04050700 100%), #06070a",
+      }}
+    >
+      {/* grade sutil */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 pointer-events-none opacity-[0.35]"
         style={{
-          backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
-                           linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
+          backgroundImage:
+            "linear-gradient(rgba(77,166,255,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(255,162,43,.07) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          maskImage: "radial-gradient(80% 60% at 50% 30%, #000 0%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(80% 60% at 50% 30%, #000 0%, transparent 80%)",
         }}
+        aria-hidden="true"
       />
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-2 items-center gap-12 md:gap-8">
+      {/* aura atrás do mascote (lado esquerdo) */}
+      <div
+        className="absolute top-[6%] left-[8%] sm:left-[14%] pointer-events-none hidden md:block"
+        style={{ width: "min(620px, 60vw)", height: "min(620px, 60vw)" }}
+        aria-hidden="true"
+      >
+        <div
+          className="absolute inset-[12%] rounded-full blur-[70px] animate-[spin_22s_linear_infinite]"
+          style={{
+            background:
+              "conic-gradient(from 0deg, rgba(255,138,0,.30), rgba(77,166,255,.28), rgba(255,138,0,.30))",
+          }}
+        />
+        <div
+          className="absolute inset-[26%] rounded-full animate-pulse-glow"
+          style={{ background: "radial-gradient(circle, rgba(255,162,43,.22) 0%, transparent 68%)" }}
+        />
+        <div
+          className="absolute inset-[18%] rounded-full border animate-[spin_26s_linear_infinite]"
+          style={{ borderColor: "rgba(77,166,255,.28)" }}
+        />
+      </div>
+
+      <div className="container mx-auto relative z-10">
+        <div className="grid md:grid-cols-[1fr_1.1fr] items-center gap-10 md:gap-14">
           {/* Mascote */}
-          <div className="relative flex items-center justify-center order-1">
-            <div className="absolute w-[70%] aspect-square bg-primary/25 rounded-full blur-3xl animate-pulse-glow" />
-            <div className="absolute right-0 top-[10%] w-[45%] aspect-square bg-secondary/25 rounded-full blur-3xl" />
-            <img
-              src={mascoteFogo}
-              alt="Mascote TH da Agência Kaeth, cercado de fogo e raios"
-              className="relative w-full max-w-md md:max-w-lg animate-float"
-            />
+          <div className="relative flex justify-center md:justify-start order-1">
+            <div className="relative w-[260px] sm:w-[360px] md:w-[460px] lg:w-[540px]">
+              <div
+                className="absolute left-1/2 bottom-[6%] -translate-x-1/2 w-[58%] h-6 rounded-full blur-md animate-pulse-glow"
+                style={{
+                  background:
+                    "radial-gradient(ellipse, rgba(255,138,0,.42) 0%, rgba(77,166,255,.18) 45%, transparent 72%)",
+                }}
+              />
+              <img
+                src={mascoteHero}
+                alt="Mascote TH da Agência Kaeth"
+                className="relative w-full h-auto animate-float"
+                style={{
+                  filter:
+                    "drop-shadow(0 20px 40px rgba(0,0,0,.6)) drop-shadow(0 0 30px rgba(77,166,255,.28))",
+                }}
+              />
+            </div>
           </div>
 
           {/* Conteúdo */}
-          <div className="order-2 text-center md:text-left">
+          <div className="order-2 flex flex-col items-center md:items-start text-center md:text-left">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full mb-6 animate-fade-up">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm text-muted-foreground">Agência Digital Premium</span>
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-[10px] sm:text-[11px] tracking-[0.28em] uppercase text-white/70 animate-fade-up">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#4da6ff] shadow-[0_0_12px_#4da6ff] animate-pulse" />
+              Marketing digital • Sites • Performance
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 animate-fade-up-delay-1">
-              Transformamos sua ideia em uma{" "}
-              <span className="gradient-text glow-text">Marca Digital</span>
+            {/* Lockup Agência / KAETH */}
+            <div className="flex flex-col mt-6 animate-fade-up-delay-1">
+              <span className="text-[10px] sm:text-xs tracking-[0.5em] uppercase text-white/55">
+                Agência
+              </span>
+              <span
+                className="font-extrabold leading-[0.9] tracking-tight mt-2 bg-clip-text text-transparent"
+                style={{
+                  ...SORA,
+                  fontSize: "clamp(44px, 7.5vw, 96px)",
+                  backgroundImage: "linear-gradient(96deg, #ffffff 0%, #ffb457 40%, #4da6ff 88%)",
+                }}
+              >
+                KAETH
+              </span>
+            </div>
+
+            {/* Subheadline */}
+            <h1
+              className="mt-4 font-semibold leading-snug text-foreground animate-fade-up-delay-2"
+              style={{ ...SORA, fontSize: "clamp(20px, 2.4vw, 32px)" }}
+            >
+              Sua marca com{" "}
+              <span style={{ color: "#ffb457" }}>presença de verdade</span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto md:mx-0 mb-10 animate-fade-up-delay-2">
-              Criamos identidades visuais únicas e websites modernos que convertem visitantes em clientes. Design estratégico para empresas que querem se destacar.
+            {/* Subtítulo */}
+            <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed text-white/65 animate-fade-up-delay-2">
+              Criamos sites, campanhas e identidade visual para empresas que
+              querem ser lembradas. Estratégia, design e tecnologia no mesmo
+              lugar.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 animate-fade-up-delay-3">
+            {/* CTAs */}
+            <div className="flex flex-wrap justify-center md:justify-start gap-3 sm:gap-4 mt-6 animate-fade-up-delay-3">
               <a
                 href="#contato"
-                className="group gradient-bg px-8 py-4 rounded-full font-semibold text-primary-foreground flex items-center gap-2 hover:opacity-90 transition-all duration-300 hover:scale-105 glow animate-pulse-glow"
+                className="relative overflow-hidden inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-[13px] tracking-[0.1em] uppercase transition-transform hover:-translate-y-0.5"
+                style={{
+                  ...SORA,
+                  color: "#0a0c11",
+                  background: "linear-gradient(100deg, #ffb457, #ff8a00)",
+                  boxShadow: "0 14px 34px rgba(255,138,0,.3)",
+                }}
               >
-                Iniciar Projeto
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Começar um projeto
               </a>
               <a
                 href="#portfolio"
-                className="px-8 py-4 rounded-full font-semibold border border-border hover:border-primary/50 transition-all duration-300 hover:bg-muted"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-medium text-[13px] tracking-[0.1em] uppercase border transition-colors hover:bg-[#4da6ff]/15"
+                style={{
+                  ...SORA,
+                  color: "#eaf2ff",
+                  borderColor: "rgba(77,166,255,.45)",
+                  background: "rgba(77,166,255,.08)",
+                }}
               >
-                Ver Portfólio
+                Ver portfólio
               </a>
             </div>
 
             {/* Stats */}
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-8 md:gap-12 mt-16 pt-8 border-t border-border animate-fade-up-delay-3">
-              <div className="text-center md:text-left">
-                <div className="text-3xl md:text-4xl font-bold gradient-text">150+</div>
-                <div className="text-sm text-muted-foreground mt-1">Projetos Entregues</div>
+            <div className="flex flex-wrap justify-center md:justify-start gap-8 sm:gap-12 mt-8 pt-5 border-t border-white/10 w-full max-w-xl animate-fade-up-delay-3">
+              <div className="flex flex-col items-center md:items-start gap-1.5">
+                <span className="font-extrabold text-2xl sm:text-3xl" style={{ ...SORA, color: "#ffb457" }}>
+                  +180
+                </span>
+                <span className="text-[10px] tracking-[0.24em] uppercase text-white/50">
+                  Projetos entregues
+                </span>
               </div>
-              <div className="text-center md:text-left">
-                <div className="text-3xl md:text-4xl font-bold gradient-text">98%</div>
-                <div className="text-sm text-muted-foreground mt-1">Clientes Satisfeitos</div>
+              <div className="flex flex-col items-center md:items-start gap-1.5">
+                <span className="font-extrabold text-2xl sm:text-3xl" style={{ ...SORA, color: "#4da6ff" }}>
+                  7 anos
+                </span>
+                <span className="text-[10px] tracking-[0.24em] uppercase text-white/50">
+                  De estrada
+                </span>
               </div>
-              <div className="text-center md:text-left">
-                <div className="text-3xl md:text-4xl font-bold gradient-text">5+</div>
-                <div className="text-sm text-muted-foreground mt-1">Anos de Experiência</div>
+              <div className="flex flex-col items-center md:items-start gap-1.5">
+                <span className="font-extrabold text-2xl sm:text-3xl text-white" style={SORA}>
+                  4.9★
+                </span>
+                <span className="text-[10px] tracking-[0.24em] uppercase text-white/50">
+                  Avaliação dos clientes
+                </span>
               </div>
             </div>
           </div>
