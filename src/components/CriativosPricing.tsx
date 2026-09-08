@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Star, Zap, Target, Palette, PenTool, BarChart3, Users, Clock } from "lucide-react";
-import sejaParceiraBanner from "@/assets/seja-parceira-banner.webp";
+import SejaParceira from "./SejaParceira";
 
 type SubTabType = "unidades" | "carrosseis" | "combos";
 
@@ -300,15 +300,8 @@ const CriativosPricing = () => {
         >
           {/* Unidades Content */}
           {activeSubTab === "unidades" && (
-            <div className="space-y-12">
-              {/* Seja parceira da Kaeth */}
-              <div className="max-w-3xl mx-auto rounded-3xl overflow-hidden border border-primary/30 shadow-lg shadow-primary/10">
-                <img
-                  src={sejaParceiraBanner}
-                  alt="Seja parceira da Kaeth — tabela de valores para artes avulsas, pacotes e fechamento mensal"
-                  className="w-full h-auto"
-                />
-              </div>
+            <div className="-mx-6 md:-mx-8">
+              <SejaParceira />
             </div>
           )}
 
