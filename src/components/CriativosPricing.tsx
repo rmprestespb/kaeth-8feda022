@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Star, Zap, Target, Palette, PenTool, BarChart3, Users, Clock } from "lucide-react";
+import sejaParceiraBanner from "@/assets/seja-parceira-banner.webp";
 
 type SubTabType = "unidades" | "carrosseis" | "combos";
 
@@ -300,34 +301,13 @@ const CriativosPricing = () => {
           {/* Unidades Content */}
           {activeSubTab === "unidades" && (
             <div className="space-y-12">
-              {/* Posts Individuais */}
-              <div>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Posts Individuais</h3>
-                  <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Serviços avulsos para necessidades pontuais. Cada criativo é desenvolvido com atenção aos detalhes e alinhado à identidade visual do cliente.
-                  </p>
-                </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                  {unidadesPosts.map((card, index) => (
-                    <PricingCardComponent key={card.title} card={card} index={index} />
-                  ))}
-                </div>
-              </div>
-
-              {/* Serviços Complementares */}
-              <div>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Serviços Complementares</h3>
-                  <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Serviços adicionais para complementar sua estratégia de redes sociais
-                  </p>
-                </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                  {servicosComplementares.map((card, index) => (
-                    <PricingCardComponent key={card.title} card={card} index={index} />
-                  ))}
-                </div>
+              {/* Seja parceira da Kaeth */}
+              <div className="max-w-3xl mx-auto rounded-3xl overflow-hidden border border-primary/30 shadow-lg shadow-primary/10">
+                <img
+                  src={sejaParceiraBanner}
+                  alt="Seja parceira da Kaeth — tabela de valores para artes avulsas, pacotes e fechamento mensal"
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           )}
