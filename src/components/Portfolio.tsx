@@ -45,8 +45,22 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-24 md:py-32">
-      <div className="container mx-auto px-6">
+    <section id="portfolio" className="relative py-24 md:py-32 overflow-hidden">
+      {/* Background decor */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[128px]" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/10 rounded-full blur-[128px]" />
+        <div
+          className="absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
+                             linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-primary font-medium text-sm uppercase tracking-wider">
             Portfólio
